@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">AlkoMaster</string>
+    <string name="alkomat_button">Alkomat</string>
+    <string name="kalkulator_button">Kalkulator</string>
+    <string name="alkomat_textView">Kalkulator do obliczania poziomu alkoholu we krwi</string>
+    <string name="radioButton_female">Kobieta</string>
+    <string name="radioButton_male">Mężczyzna</string>
+    <string name="textView_waga">Waga:</string>
+    <string name="editText_waga">Ile ważysz?</string>
+    <string name="textView_kg">kg</string>
+    <string name="textView_poczatek">Czas rozpoczęcia</string>
+    <string name="textView_koniec">Czas zakończenia</string>
+    <string name="godzina">%1$s:%2$s</string>
+    <string name="button_dalej">Dalej</string>
 </resources>
