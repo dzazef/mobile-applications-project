@@ -5,13 +5,13 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.format.DateFormat
-import android.widget.TextClock
+import android.widget.TextView
 import android.widget.TimePicker
 import java.util.*
 
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
-    var textClock : TextClock? = null //clock view, ktore pokaze wybrana godzine
+    var textClock : TextView? = null //clock view, ktore pokaze wybrana godzine
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current time as the default values for the picker

@@ -86,10 +86,11 @@
                       android:layout_weight="1"
                       android:id="@id/textView"
                       android:textSize="15sp" android:textAlignment="center" android:text="@string/textView_poczatek"/>
-            <TextClock android:layout_width="match_parent" android:layout_height="0dp"
+            <TextView android:layout_width="match_parent" android:layout_height="0dp"
                        android:layout_weight="1"
                        android:textAlignment="center"
-                       android:onClick="showTimePickerDialog" android:textSize="15sp"
+                       android:id="@+id/textClock_poczatek"
+                       android:onClick="showTimePickerDialog" android:textSize="20sp"
             />
         </LinearLayout>
 
@@ -105,10 +106,11 @@
                       android:layout_weight="1"
                       android:id="@id/textView"
                       android:textSize="15sp" android:textAlignment="center" android:text="@string/textView_koniec"/>
-            <TextClock android:layout_width="match_parent" android:layout_height="0dp"
+            <TextView android:layout_width="match_parent" android:layout_height="0dp"
                        android:layout_weight="1"
                        android:textAlignment="center"
-                       android:onClick="showTimePickerDialog" android:textSize="15sp"
+                       android:id="@+id/textClock_koniec"
+                       android:onClick="showTimePickerDialog" android:textSize="20sp"
             />
         </LinearLayout>
     </LinearLayout>
