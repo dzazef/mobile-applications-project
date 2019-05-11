@@ -11,6 +11,10 @@ import android.widget.TextClock
  * aktywnosc umozliwia wprowadzenie podstawowych danych (plec, waga i czas) potrzebnych do obliczenia poziomu alkoholu we krwi
  */
 class LevelActivityData : AppCompatActivity() {
+    private var type : String = ""
+    private var weight : Int = 0
+    private var start : String = ""
+    private var finish : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +29,11 @@ class LevelActivityData : AppCompatActivity() {
             when (view.getId()) {
                 R.id.radioButton_female ->
                     if (checked) {
-                        //TODO wybrany kobieta
+                        type = "female"
                     }
                 R.id.radioButton_male ->
                     if (checked) {
-                        //TODO wybrany mezczyzna
+                        type = "male"
                     }
             }
         }
@@ -45,6 +49,7 @@ class LevelActivityData : AppCompatActivity() {
 
     fun startNextActivity(view: View) {
         //TODO wysyla zabrane dane i rozpoczyna nowa aktywnosc
+
     }
 
 }
