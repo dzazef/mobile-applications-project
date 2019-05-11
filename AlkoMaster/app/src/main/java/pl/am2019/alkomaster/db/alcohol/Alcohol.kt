@@ -1,4 +1,4 @@
-package pl.am2019.alkomaster.db
+package pl.am2019.alkomaster.db.alcohol
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity

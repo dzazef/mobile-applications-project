@@ -1,10 +1,17 @@
-package pl.am2019.alkomaster
+package pl.am2019.alkomaster.db
 
 import android.arch.persistence.room.Room
 import android.content.Context
 import android.util.Log
-import pl.am2019.alkomaster.db.AppDatabase
 
+/**
+ * Żeby otworzyć bazę danych do klasy MainActitvity dodajemy interfejs
+ * OpenDatabase.OpenDatabaseListener i implementujemy metodę onDatabaseReady
+ * Przykład:
+ *  val open = OpenDatabase(this)
+ *  open.setOpenDatabaseListener(this)
+ *  open.load()
+ */
 class OpenDatabase(private val context: Context) {
     interface OpenDatabaseListener {
         fun onDatabaseReady(db : AppDatabase)
