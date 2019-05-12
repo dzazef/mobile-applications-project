@@ -25,14 +25,13 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
 
     override fun onDatabaseReady(db: AppDatabase) {
         AsyncTask.execute{
-            val a = Alcohol(name = "piwo", capacity = 500, price = 2.5)
+            val a = Alcohol(name = "piwo", capacity = 500, price = 2.5, content = 5.5)
             val pattern = "yyyy-MM-dd HH:mm"
             val d = SimpleDateFormat(pattern, Locale.GERMAN).parse("2018-09-09 23:50")
             val bh = BreathalyserHistory(
                 gender = "male",
                 weight = 65.5,
-                beginTime = d,
-                stomach = "empty",
+                drinkingTime = 2.5,
                 quantity = 25.6,
                 dateTime = d)
             db.alcoholDAO().insertAll(a)

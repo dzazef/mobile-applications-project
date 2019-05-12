@@ -5,12 +5,6 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import java.util.*
 
-/**
- * jeśli jakieś pole nie będzie potrzebne to wstawiajcie NULL
- * dlatego po każdym polu dałem '?'
- * żeby się nie bawić w ENUM dałem po prostu String
- */
-
 @Entity(tableName = "breathalyser_history")
 data class BreathalyserHistory (
     @ColumnInfo(name = "id")
@@ -18,22 +12,21 @@ data class BreathalyserHistory (
     var id: Int = 0,
 
     @ColumnInfo(name = "gender")
-    var gender : String?,
+    var gender : String,
 
     @ColumnInfo(name = "weight")
-    var weight : Double?,
+    var weight : Double,
 
-    @ColumnInfo(name = "begin_time")
-    var beginTime : Date?,
+    //w godzinach
+    @ColumnInfo(name = "drinking_time")
+    var drinkingTime : Double,
 
-    //pusty - pełny - półpełny xD
-    @ColumnInfo(name = "stomach")
-    var stomach : String?,
 
     //ilość czystego alkoholu w gramach
     @ColumnInfo(name = "quantity")
-    var quantity : Double?,
+    var quantity : Double,
 
+    //tylko po to żeby był porządek w recycler view
     @ColumnInfo(name = "date_time")
-    var dateTime : Date?
+    var dateTime : Date
 )
