@@ -16,6 +16,9 @@ data class Alcohol (
     @ColumnInfo(name = "capacity")
     var capacity: Int,
 
+    @ColumnInfo(name = "content")
+    var content: Double,
+
     @ColumnInfo(name = "price")
     var price: Double?
 )
