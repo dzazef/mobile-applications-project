@@ -8,6 +8,8 @@ import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 import pl.am2019.alkomaster.db.breathalyser_history.BreathalyserHistory
+import pl.am2019.alkomaster.db.comparator_history.ComparatorAlcohol
+import pl.am2019.alkomaster.db.comparator_history.ComparatorHistory
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,6 +27,10 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
 
     override fun onDatabaseReady(db: AppDatabase) {
         AsyncTask.execute{
+            db.alcoholDAO().dropAll()
+            db.breathalyserHistoryDAO().dropAll()
+            db.comparatorAlcoholDAO().dropAll()
+            db.comparatorHistoryDAO().dropAll()
             val a = Alcohol(name = "piwo", capacity = 500, price = 2.5, content = 5.5)
             val pattern = "yyyy-MM-dd HH:mm"
             val d = SimpleDateFormat(pattern, Locale.GERMAN).parse("2018-09-09 23:50")
@@ -38,6 +44,12 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
             db.breathalyserHistoryDAO().insertAll(bh)
             Log.i("DEBUG_INFO", db.alcoholDAO().getAll().toString())
             Log.i("DEBUG_INFO", db.breathalyserHistoryDAO().getAll().toString())
+            val ch = ComparatorHistory(dateTime = d)
+            db.comparatorAlcoholDAO().insertAll(ComparatorAlcohol(db.comparatorHistoryDAO().insertAll(ch)[0],1))
+            Log.i("DEBUG_INFO", db.alcoholDAO().getAll().toString())
+            Log.i("DEBUG_INFO", db.breathalyserHistoryDAO().getAll().toString())
+            Log.i("DEBUG_INFO", db.comparatorHistoryDAO().getAll().toString())
+            Log.i("DEBUG_INFO", db.comparatorAlcoholDAO().getAll().toString())
         }
     }
 }
