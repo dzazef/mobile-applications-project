@@ -11,7 +11,7 @@ interface BreathalyserHistoryDAO {
     fun getAll() : List<BreathalyserHistory>
 
     @Insert
-    fun insertAll(vararg history : BreathalyserHistory)
+    fun insertAll(vararg history : BreathalyserHistory) : Array<Long>
 
     //Uwaga tutaj xD
     @Query("DELETE FROM breathalyser_history")

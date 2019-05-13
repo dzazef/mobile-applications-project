@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey
 data class Alcohol (
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    var id: Long = 0,
 
     @ColumnInfo(name = "name")
     var name: String,

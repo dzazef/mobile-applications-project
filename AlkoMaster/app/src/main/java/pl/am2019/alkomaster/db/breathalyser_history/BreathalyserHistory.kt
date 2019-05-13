@@ -9,7 +9,7 @@ import java.util.*
 data class BreathalyserHistory (
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    var id: Long = 0,
 
     @ColumnInfo(name = "gender")
     var gender : String,
