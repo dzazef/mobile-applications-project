@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AlkoMaster</string>
+    <string name="incorrect_value">Incorrect value</string>
 </resources>

@@ -3,7 +3,6 @@ package pl.am2019.alkomaster.db.comparator_history
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import pl.am2019.alkomaster.db.alcohol.Alcohol
 
 @Dao
 interface ComparatorHistoryDAO {

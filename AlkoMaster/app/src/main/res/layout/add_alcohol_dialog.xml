@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
 
     <TextView
             android:text="Nazwa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addalc_txt_name" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.05"/>
+            android:id="@+id/addalc_txt_name"
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,75 +18,48 @@
             android:ems="10"
             android:id="@+id/addalc_ptxt_name"
             android:hint="Nazwa"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.1"/>
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <TextView
             android:text="Pojemność"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content" android:id="@+id/addalc_txt_capacity"
-            app:layout_constraintVertical_bias="0.23000002"/>
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <EditText
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/addalc_ptxt_capacity" app:layout_constraintVertical_bias="0.31"/>
+            android:id="@+id/addalc_ptxt_capacity"
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <TextView
             android:text="Zawartość alkoholu"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addalc_txt_content" app:layout_constraintVertical_bias="0.42000002"/>
+            android:id="@+id/addalc_txt_content"
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <EditText
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/addalc_ptxt_content"/>
+            android:id="@+id/addalc_ptxt_content"
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <TextView
             android:text="Cena"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/addalc_txt_price"
-            app:layout_constraintVertical_bias="0.58000004"/>
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <EditText
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/addalc_ptxt_price" app:layout_constraintVertical_bias="0.66999996"/>
+            android:id="@+id/addalc_ptxt_price"
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <Button
             android:text="Dodaj"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addalc_btn_add" app:layout_constraintVertical_bias="0.87"/>
-</android.support.constraint.ConstraintLayout>
+            android:id="@+id/addalc_btn_add"
+            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+</LinearLayout>

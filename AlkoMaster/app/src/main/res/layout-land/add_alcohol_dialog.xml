@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="500dp"
+                                             android:layout_height="300dp">
 
     <android.support.constraint.Guideline
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/addalcland_gdl1"
             app:layout_constraintGuide_percent="0.50"/>
-    <?xml version="1.0" encoding="utf-8"?>
 
     <TextView
             android:text="Nazwa"
@@ -95,5 +95,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addalc_btn_add" app:layout_constraintVertical_bias="0.9"/>
+            android:id="@+id/addalc_btn_add" app:layout_constraintVertical_bias="0.94"/>
 </android.support.constraint.ConstraintLayout>
