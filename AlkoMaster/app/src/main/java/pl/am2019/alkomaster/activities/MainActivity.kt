@@ -1,9 +1,10 @@
-package pl.am2019.alkomaster
+package pl.am2019.alkomaster.activities
 
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
