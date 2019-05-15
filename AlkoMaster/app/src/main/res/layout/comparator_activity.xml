@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+              android:layout_height="match_parent" android:layout_marginLeft="5dp" android:layout_marginTop="5dp"
+              android:layout_marginEnd="5dp" android:layout_marginRight="5dp" android:layout_marginBottom="5dp"
+>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:inputType="textPersonName"
+                android:text="      Wyszukiwarka"
+                android:ems="10"
+                android:id="@+id/editText" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+        <android.support.v7.widget.RecyclerView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/recyclerView" android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" android:layout_marginBottom="5dp" android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp" android:layout_margin="5dp" android:clipToPadding="false">
+        </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <Button
+                    android:background="@drawable/listshape"
+                    android:text="Porównaj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/but1" android:layout_weight="1"
+                    android:layout_marginRight="5dp" android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+
+
+            />
+            <Button
+                    android:text="Dodaj do bazy"
+                    android:background="@drawable/listshape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/but2" android:layout_weight="1"
+                    android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
