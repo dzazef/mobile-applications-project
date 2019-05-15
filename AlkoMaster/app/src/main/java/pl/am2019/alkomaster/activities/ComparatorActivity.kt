@@ -8,12 +8,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.comparator_activity.*
+import pl.am2019.alkomaster.activities.AddAlcoholDialog
+import pl.am2019.alkomaster.activities.DatabaseNotFoundDialogFragment
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 
 
 class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
+
+    private var db: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,24 +34,31 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
         var alks = ArrayList<Alcohol>()
         alks.add(Alcohol(1, "Piast", 500, 5.5, 3.00))
         alks.add(Alcohol(2, "Żubr", 500, 4.5, 2.50))
-
         val adapter = MyAdapter(this, alks)
         recyclerView.adapter = adapter
         but2.setOnClickListener {
+            if (db != null) {
+                val dialog = AddAlcoholDialog(this, db!!)
+                dialog.show()
+            } else {
+                DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+            }
+        }
 
         }
-        but1.setOnClickListener {
-/*
+       /* but1.setOnClickListener {
+*//*
             val intent = Intent(this,ResultActivity::class.java)
             // intent.putExtra("result", result)
-            startActivity(intent)*/
+            startActivity(intent)*//*
 
 
         }
-    }
+    }*/
 
 
     override fun onDatabaseReady(db: AppDatabase) {
+        this.db = db
         AsyncTask.execute {
             db.alcoholDAO().dropAll()
             db.breathalyserHistoryDAO().dropAll()
