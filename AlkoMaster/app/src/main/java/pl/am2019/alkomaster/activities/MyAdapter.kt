@@ -11,7 +11,13 @@ import pl.am2019.alkomaster.db.alcohol.Alcohol
 
 class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
+    /*fun getTotal():Float {
+        var total = 0f
+        for (alcohol in alcohols)
+            total += alcohol.price!!
+        return total*/
 
+   // }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val alko = alcohols[position]
@@ -20,16 +26,15 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
         holder.content.text = alko.content.toString()
         holder.capacity.text = alko.capacity.toString()
 
+
         // wzor: content / 100 * capacity / price
 
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, convertVie: Int): MyViewHolder {
 
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.alkohol_item, parent, false)
-        return MyViewHolder(view)
+        val myView = LayoutInflater.from(context).inflate(R.layout.alkohol_item,parent,false)
+        return MyViewHolder(myView)
     }
 
     override fun getItemCount(): Int {
@@ -44,8 +49,13 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
 
 
     }
+    fun getItems():List<Alcohol> {
+        return alcohols
+    }
 
-}
+    }
+
+
 
 
 

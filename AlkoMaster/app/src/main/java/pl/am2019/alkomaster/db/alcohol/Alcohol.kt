@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "alcohol")
-data class Alcohol (
+data class Alcohol(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
@@ -20,5 +20,5 @@ data class Alcohol (
     var content: Double,
 
     @ColumnInfo(name = "price")
-    var price: Double?
+    var price: Double
 )
