@@ -13,4 +13,7 @@ data class ComparatorHistory(
 
     @ColumnInfo(name = "date_time")
     var dateTime : Date
-)
+) : Comparable<ComparatorHistory> {
+
+    override fun compareTo(other: ComparatorHistory): Int = this.dateTime.compareTo(other.dateTime)
+}
