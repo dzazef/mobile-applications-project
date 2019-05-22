@@ -1,4 +1,4 @@
-package pl.am2019.alkomaster
+package pl.am2019.alkomaster.activities
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 
 
@@ -17,7 +18,7 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
             total += alcohol.price!!
         return total*/
 
-   // }
+    // }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val alko = alcohols[position]
@@ -33,7 +34,7 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
 
     override fun onCreateViewHolder(parent: ViewGroup, convertVie: Int): MyViewHolder {
 
-        val myView = LayoutInflater.from(context).inflate(R.layout.alkohol_item,parent,false)
+        val myView = LayoutInflater.from(context).inflate(R.layout.alkohol_item, parent, false)
         return MyViewHolder(myView)
     }
 
@@ -49,11 +50,11 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
 
 
     }
-    fun getItems():List<Alcohol> {
+
+    fun getItems(): List<Alcohol> {
         return alcohols
     }
-
-    }
+}
 
 
 
