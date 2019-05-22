@@ -15,6 +15,7 @@ import android.util.Log
 class OpenDatabase(private val context: Context) {
     interface OpenDatabaseListener {
         fun onDatabaseReady(db : AppDatabase)
+        fun onDatabaseFail()
     }
 
     private var listener : OpenDatabaseListener? = null
@@ -37,7 +38,8 @@ class OpenDatabase(private val context: Context) {
                     ).build()
                     listener?.onDatabaseReady(db)
                 } catch (e: Exception) {
-                    Log.e("DEBUG_ERROR", e.message)
+                    listener?.onDatabaseFail()
+                    Log.e("ERROR_DATABASE", e.message)
                 }
             }.start()
         }

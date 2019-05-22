@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import pl.am2019.alkomaster.R
+import pl.am2019.alkomaster.activities.comparator_history.ComparatorHistoryActivity
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
@@ -16,7 +17,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
-
     private var db: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,12 +34,13 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
             db.comparatorHistoryDAO().dropAll()
 
             val pattern = "yyyy-MM-dd HH:mm"
-            val d = SimpleDateFormat(pattern, Locale.GERMAN).parse("2018-09-09 23:50")
+            val d = SimpleDateFormat(pattern, Locale.US).parse("2018-09-09 23:50")
 
             val a1 = Alcohol(name = "piwo1", capacity = 500, content = 5.5, price = 2.5)
             val a2 = Alcohol(name = "piwo2", capacity = 500, content = 4.5, price = 3.5)
+            val a3 = Alcohol(name = "piwo2", capacity = 500, content = 4.5, price = 3.5)
 
-            val aID = db.alcoholDAO().insertAll(a1, a2)
+            val aID = db.alcoholDAO().insertAll(a1, a2, a3)
 
             val ch = ComparatorHistory(dateTime = d)
             val chID = db.comparatorHistoryDAO().insertAll(ch).first()
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
 
             Log.d("DEBUG1", test.toString())
         }
+    }
+
+    override fun onDatabaseFail() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun onClick(v: View) {
