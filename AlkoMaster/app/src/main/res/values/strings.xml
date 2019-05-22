@@ -12,4 +12,6 @@
     <string name="textView_koniec">Czas zakończenia</string>
     <string name="godzina">%1$s:%2$s</string>
     <string name="button_dalej">Dalej</string>
+    <string name="szukaj">Szukaj</string>
+    <string name="wyszukaj_alkohol">Znajdź alkohol</string>
 </resources>

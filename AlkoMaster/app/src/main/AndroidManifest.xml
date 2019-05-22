@@ -17,10 +17,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LevelActivityData">
+        <activity android:name=".breathalyser.LevelActivityData">
         </activity>
 
-        <activity android:name=".AlcoholLevelAlcohols">
+        <activity android:name=".breathalyser.AlcoholLevelAlcohols">
         </activity>
 
     </application>

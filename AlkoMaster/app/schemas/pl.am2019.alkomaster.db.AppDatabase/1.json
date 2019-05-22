@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1364d131dd56f1f640ba93ed7837bf16",
+    "identityHash": "f8728965fba2e556e136d9286651b53e",
     "entities": [
       {
         "tableName": "alcohol",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `capacity` INTEGER NOT NULL, `price` REAL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `capacity` INTEGER NOT NULL, `content` REAL NOT NULL, `price` REAL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -27,6 +27,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "content",
+            "columnName": "content",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
             "fieldPath": "price",
             "columnName": "price",
             "affinity": "REAL",
@@ -44,7 +50,7 @@
       },
       {
         "tableName": "breathalyser_history",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gender` TEXT, `weight` REAL, `begin_time` INTEGER, `stomach` TEXT, `quantity` REAL, `date_time` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gender` TEXT NOT NULL, `weight` REAL NOT NULL, `drinking_time` REAL NOT NULL, `quantity` REAL NOT NULL, `date_time` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -56,37 +62,31 @@
             "fieldPath": "gender",
             "columnName": "gender",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "weight",
             "columnName": "weight",
             "affinity": "REAL",
-            "notNull": false
+            "notNull": true
           },
           {
-            "fieldPath": "beginTime",
-            "columnName": "begin_time",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "stomach",
-            "columnName": "stomach",
-            "affinity": "TEXT",
-            "notNull": false
+            "fieldPath": "drinkingTime",
+            "columnName": "drinking_time",
+            "affinity": "REAL",
+            "notNull": true
           },
           {
             "fieldPath": "quantity",
             "columnName": "quantity",
             "affinity": "REAL",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "dateTime",
             "columnName": "date_time",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -97,11 +97,113 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "comparator_history",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date_time` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateTime",
+            "columnName": "date_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "comparator_alcohol",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`comparator_id` INTEGER NOT NULL, `alcohol_id` INTEGER NOT NULL, PRIMARY KEY(`comparator_id`, `alcohol_id`), FOREIGN KEY(`comparator_id`) REFERENCES `comparator_history`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`alcohol_id`) REFERENCES `alcohol`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "comparatorId",
+            "columnName": "comparator_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alcoholId",
+            "columnName": "alcohol_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "comparator_id",
+            "alcohol_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_comparator_alcohol_comparator_id_alcohol_id",
+            "unique": false,
+            "columnNames": [
+              "comparator_id",
+              "alcohol_id"
+            ],
+            "createSql": "CREATE  INDEX `index_comparator_alcohol_comparator_id_alcohol_id` ON `${TABLE_NAME}` (`comparator_id`, `alcohol_id`)"
+          },
+          {
+            "name": "index_comparator_alcohol_alcohol_id",
+            "unique": false,
+            "columnNames": [
+              "alcohol_id"
+            ],
+            "createSql": "CREATE  INDEX `index_comparator_alcohol_alcohol_id` ON `${TABLE_NAME}` (`alcohol_id`)"
+          },
+          {
+            "name": "index_comparator_alcohol_comparator_id",
+            "unique": false,
+            "columnNames": [
+              "comparator_id"
+            ],
+            "createSql": "CREATE  INDEX `index_comparator_alcohol_comparator_id` ON `${TABLE_NAME}` (`comparator_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "comparator_history",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "comparator_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "alcohol",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "alcohol_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1364d131dd56f1f640ba93ed7837bf16\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f8728965fba2e556e136d9286651b53e\")"
     ]
   }
 }
