@@ -44,8 +44,10 @@ class RecyclerViewAdapter(private val dataset: ArrayList<AlcoholData>, val conte
                     notifyDataSetChanged()
                 }
                 buttonMinus -> {
-                    dataset[view.tag as Int].amount--
-                    notifyDataSetChanged()
+                    if(dataset[view.tag as Int].amount > 1) {
+                        dataset[view.tag as Int].amount--
+                        notifyDataSetChanged()
+                    }
                 }
                 buttonX -> {
                     dataset.removeAt(view.tag as Int)
