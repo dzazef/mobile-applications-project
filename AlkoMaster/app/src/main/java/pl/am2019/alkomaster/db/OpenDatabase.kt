@@ -31,11 +31,13 @@ class OpenDatabase(private val context: Context) {
         } else {
             Thread{
                 try {
-                    val db = Room.databaseBuilder(
-                        context,
-                        AppDatabase::class.java,
-                        "alcomaster.db"
-                    ).build()
+                    val db: AppDatabase = Room
+                        .databaseBuilder(
+                            context,
+                            AppDatabase::class.java,
+                            "alcomaster.db"
+                        ).build()
+                    populateAlcohol(db)
                     listener?.onDatabaseReady(db)
                 } catch (e: Exception) {
                     listener?.onDatabaseFail()
@@ -44,4 +46,12 @@ class OpenDatabase(private val context: Context) {
             }.start()
         }
     }
+
+    private fun populateAlcohol(db : AppDatabase) {
+        if (db.alcoholDAO().getAll().isEmpty()) {
+            db.alcoholDAO().insertAll(CSVUtils(context).getAlcoholList())
+        }
+    }
 }
+
+

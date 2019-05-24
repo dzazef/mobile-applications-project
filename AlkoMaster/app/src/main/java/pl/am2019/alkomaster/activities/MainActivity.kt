@@ -10,11 +10,6 @@ import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.activities.comparator_history.ComparatorHistoryActivity
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
-import pl.am2019.alkomaster.db.alcohol.Alcohol
-import pl.am2019.alkomaster.db.comparator_history.ComparatorAlcohol
-import pl.am2019.alkomaster.db.comparator_history.ComparatorHistory
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     private var db: AppDatabase? = null
@@ -28,35 +23,12 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     override fun onDatabaseReady(db: AppDatabase) {
         this.db = db
         AsyncTask.execute{
-            db.alcoholDAO().dropAll()
-            db.breathalyserHistoryDAO().dropAll()
-            db.comparatorAlcoholDAO().dropAll()
-            db.comparatorHistoryDAO().dropAll()
-
-            val pattern = "yyyy-MM-dd HH:mm"
-            val d = SimpleDateFormat(pattern, Locale.US).parse("2018-09-09 23:50")
-
-            val a1 = Alcohol(name = "piwo1", capacity = 500, content = 5.5, price = 2.5)
-            val a2 = Alcohol(name = "piwo2", capacity = 500, content = 4.5, price = 3.5)
-            val a3 = Alcohol(name = "piwo2", capacity = 500, content = 4.5, price = 3.5)
-
-            val aID = db.alcoholDAO().insertAll(a1, a2, a3)
-
-            val ch = ComparatorHistory(dateTime = d)
-            val chID = db.comparatorHistoryDAO().insertAll(ch).first()
-
-            for (id in aID) {
-                db.comparatorAlcoholDAO().insertAll(ComparatorAlcohol(comparatorId = chID, alcoholId = id))
-            }
-
-            val test = db.comparatorAlcoholDAO().getAlcoholById(chID)
-
-            Log.d("DEBUG1", test.toString())
+            Log.d("DEBUG1", db.alcoholDAO().getAll().toString())
         }
     }
 
     override fun onDatabaseFail() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
     }
 
     fun onClick(v: View) {

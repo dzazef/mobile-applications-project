@@ -16,6 +16,9 @@ interface AlcoholDAO {
     @Insert
     fun insertAll(vararg alcohol : Alcohol) : Array<Long>
 
+    @Insert
+    fun insertAll(alcohols : List<Alcohol>) : Array<Long>
+
     //Uwaga tutaj xD
     @Query("DELETE FROM alcohol")
     fun dropAll()
