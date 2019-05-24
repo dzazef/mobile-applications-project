@@ -7,9 +7,8 @@ import android.speech.RecognizerIntent
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
-import android.view.View
-import android.widget.AdapterView
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.alcohol_list.*
 import pl.am2019.alkomaster.R
@@ -22,14 +21,13 @@ import pl.am2019.alkomaster.db.alcohol.Alcohol
  */
 class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     override fun onDatabaseFail() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private var db: AppDatabase? = null
     private var alcoholList: List<Alcohol>? = null
     private var myAdapter: RecyclerViewAdapter? = null
     private var breathalyser: Breathalyser = Breathalyser(0,"","")
-    private var suggestions: Array<String>? = null
+    private var suggestions: Array<String> = Array(2000) {""}
 
     //dane z poprzedniej aktywnosci
     private var weight : Int = 0 //waga
@@ -55,6 +53,8 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
 
         if(savedInstanceState != null) {
             try {
+                Log.d("DEBUG1", "TU")
+
                 breathalyser.alcoholList = savedInstanceState.getParcelableArrayList("added_alcohols")!!
 
                 myAdapter = RecyclerViewAdapter(breathalyser.alcoholList, this)
@@ -63,7 +63,6 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
                     layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
                     adapter = myAdapter
                 }
-
             } catch(e: Throwable) {
             }
 
@@ -89,30 +88,19 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(pl.am2019.alkomaster.R.menu.menu_item, menu)
+        menuInflater.inflate(R.menu.menu_item, menu)
 
-        val item = menu.findItem(pl.am2019.alkomaster.R.id.action_search)
+        val item = menu.findItem(R.id.action_search)
         search_view.setMenuItem(item)
 
-        if(alcoholList != null && suggestions != null) {
-            //val size = alcoholList!!.size
-            //val list: Array<String> = Array(size) {i -> ("${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml") }
+        search_view.setSuggestions(suggestions)
 
-            search_view.setSuggestions(suggestions)
-
-            search_view.setOnItemClickListener(object : AdapterView.OnItemClickListener {
-                override fun onItemClick(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
-                    search_view.dismissSuggestions()
-                    search_view.closeSearch()
-
-                    val index = suggestions!!.indexOf(adapterView.getItemAtPosition(i).toString())
-                    breathalyser.addAlcohol(AlcoholData(alcoholList!![index], 1))
-
-                    myAdapter?.notifyDataSetChanged()
-                }
-            })
-
-
+        search_view.setOnItemClickListener { adapterView, _, i, _ ->
+            search_view.dismissSuggestions()
+            search_view.closeSearch()
+            val index = suggestions.indexOf(adapterView.getItemAtPosition(i).toString())
+            breathalyser.addAlcohol(AlcoholData(alcoholList!![index], 1))
+            myAdapter?.notifyDataSetChanged()
         }
 
         return true
@@ -139,6 +127,8 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         alcoholList = db.alcoholDAO().getAll()
 
         val size = alcoholList!!.size
-        suggestions = Array(size) {i -> ("${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml") }
+        for (i in 0 until size) {
+            suggestions[i] = "${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml"
+        }
     }
 }

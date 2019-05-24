@@ -40,8 +40,8 @@ class OpenDatabase(private val context: Context) {
                     populateAlcohol(db)
                     listener?.onDatabaseReady(db)
                 } catch (e: Exception) {
+                    Log.e("ERROR_DATABASE", e.message, e)
                     listener?.onDatabaseFail()
-                    Log.e("ERROR_DATABASE", e.message)
                 }
             }.start()
         }
