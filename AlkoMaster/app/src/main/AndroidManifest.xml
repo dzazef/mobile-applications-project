@@ -18,6 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".breathalyser.LevelActivityData">
+        </activity>
+
+        <activity android:name=".breathalyser.AlcoholLevelAlcohols">
+        </activity>
+
     </application>
 
 </manifest>
