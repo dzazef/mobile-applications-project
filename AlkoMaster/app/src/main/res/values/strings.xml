@@ -14,4 +14,8 @@
     <string name="button_dalej">Dalej</string>
     <string name="szukaj">Szukaj</string>
     <string name="wyszukaj_alkohol">Znajdź alkohol</string>
+    <string name="brak_alkoholi">Brak dodanych alkoholi</string>
+    <string name="alcohol_content_text">%.1f %%</string>
+    <string name="alcohol_capacity_text">%1$d ml</string>
+    <string name="alcohol_amount_text">%1$d x</string>
 </resources>

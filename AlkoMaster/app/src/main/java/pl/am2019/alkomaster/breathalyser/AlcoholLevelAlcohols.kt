@@ -13,8 +13,9 @@ import android.text.TextUtils
 import android.speech.RecognizerIntent
 import android.content.Intent
 import android.app.Activity
-import android.util.Log
-
+import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.View
+import android.widget.AdapterView
 
 /**
  * aktywnosc sluzy do dodawania alkoholi do listy
@@ -23,6 +24,8 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
 
     private var db: AppDatabase? = null
     private var alcoholList: List<Alcohol>? = null
+    private var myAdapter: RecyclerViewAdapter? = null
+    private var breathalyser: Breathalyser = Breathalyser(0,"","")
 
     //dane z poprzedniej aktywnosci
     private var weight : Int = 0 //waga
@@ -40,33 +43,45 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         end = intent.getStringExtra("end")
         type = intent.getStringExtra("type")
 
+        breathalyser = Breathalyser(weight, type, start)
+
         val open = OpenDatabase(this)
         open.setOpenDatabaseListener(this)
         open.load()
 
-        search_view.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                //Do some magic
-                return false
+        if(savedInstanceState != null) {
+            try {
+                breathalyser.alcoholList = savedInstanceState.getParcelableArrayList("added_alcohols")!!
+
+                myAdapter = RecyclerViewAdapter(breathalyser.alcoholList, this)
+                recyclerView.apply {
+                    setHasFixedSize(true)
+                    layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+                    adapter = myAdapter
+                }
+
+            } catch(e: Throwable) {
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                //Do some magic
-                return false
-            }
-        })
+        } else {
 
-        search_view.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
-            override fun onSearchViewShown() {
-                //Do some magic
+            //recyclerView
+            myAdapter = RecyclerViewAdapter(breathalyser.alcoholList, this)
+            recyclerView.apply {
+                setHasFixedSize(true)
+                layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+                adapter = myAdapter
             }
-
-            override fun onSearchViewClosed() {
-                //Do some magic
-            }
-        })
+        }
 
         search_view.setVoiceSearch(true)
+        search_view.showSearch(false)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        outState?.putParcelableArrayList("added_alcohols", breathalyser.alcoholList)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -80,6 +95,20 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
             val list: Array<String> = Array(size) {i -> ("${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml") }
 
             search_view.setSuggestions(list)
+
+            search_view.setOnItemClickListener(object : AdapterView.OnItemClickListener {
+                override fun onItemClick(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
+                    search_view.dismissSuggestions()
+                    search_view.closeSearch()
+
+                    val index = list.indexOf(adapterView.getItemAtPosition(i).toString())
+                    breathalyser.addAlcohol(AlcoholData(alcoholList!![index], 1))
+
+                    myAdapter?.notifyDataSetChanged()
+                }
+            })
+
+
         }
 
         return true
@@ -100,28 +129,9 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    /* moze sie przyda, jesli nie, to usunac
-    override fun onBackPressed() {
-        if (search_view.isSearchOpen) {
-            search_view.closeSearch()
-
-        } else {
-            super.onBackPressed()
-        }
-    }
-    */
-
     //pobiera wszystkie alkohole z bazy i umieszcza w liscie
     override fun onDatabaseReady(db: AppDatabase) {
         this.db = db
         alcoholList = db.alcoholDAO().getAll()
-
-        //test
-        alcoholList?.let {
-            for (alcohol in it) {
-                Log.d("test", alcohol.name)
-            }
-        }
-        //
     }
 }
