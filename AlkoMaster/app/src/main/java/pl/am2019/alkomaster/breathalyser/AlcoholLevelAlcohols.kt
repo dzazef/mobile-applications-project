@@ -1,26 +1,29 @@
 package pl.am2019.alkomaster.breathalyser
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.StaggeredGridLayoutManager
+import android.text.TextUtils
+import android.view.Menu
+import android.view.View
+import android.widget.AdapterView
+import com.miguelcatalan.materialsearchview.MaterialSearchView
+import kotlinx.android.synthetic.main.alcohol_list.*
+import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
-import android.view.Menu
-import kotlinx.android.synthetic.main.alcohol_list.*
-import pl.am2019.alkomaster.R
-import com.miguelcatalan.materialsearchview.MaterialSearchView
-import android.text.TextUtils
-import android.speech.RecognizerIntent
-import android.content.Intent
-import android.app.Activity
-import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.View
-import android.widget.AdapterView
 
 /**
  * aktywnosc sluzy do dodawania alkoholi do listy
  */
 class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
+    override fun onDatabaseFail() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var db: AppDatabase? = null
     private var alcoholList: List<Alcohol>? = null

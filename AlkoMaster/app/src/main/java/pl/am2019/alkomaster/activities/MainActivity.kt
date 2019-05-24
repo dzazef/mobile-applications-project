@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.activities.comparator_history.ComparatorHistoryActivity
+import pl.am2019.alkomaster.breathalyser.LevelActivityData
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 
@@ -34,6 +35,11 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     fun onClick(v: View) {
         val intent = Intent(this, ComparatorHistoryActivity::class.java)
         startActivity(intent)
+    }
+
+    fun startAlcoholLevelActivity(v : View) {
+        val myIntent = Intent(this, LevelActivityData::class.java )
+        startActivity(myIntent)
     }
 }
 
