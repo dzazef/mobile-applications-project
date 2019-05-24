@@ -29,6 +29,7 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     private var alcoholList: List<Alcohol>? = null
     private var myAdapter: RecyclerViewAdapter? = null
     private var breathalyser: Breathalyser = Breathalyser(0,"","")
+    private var suggestions: Array<String>? = null
 
     //dane z poprzedniej aktywnosci
     private var weight : Int = 0 //waga
@@ -93,18 +94,18 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         val item = menu.findItem(pl.am2019.alkomaster.R.id.action_search)
         search_view.setMenuItem(item)
 
-        if(alcoholList != null) {
-            val size = alcoholList!!.size
-            val list: Array<String> = Array(size) {i -> ("${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml") }
+        if(alcoholList != null && suggestions != null) {
+            //val size = alcoholList!!.size
+            //val list: Array<String> = Array(size) {i -> ("${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml") }
 
-            search_view.setSuggestions(list)
+            search_view.setSuggestions(suggestions)
 
             search_view.setOnItemClickListener(object : AdapterView.OnItemClickListener {
                 override fun onItemClick(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                     search_view.dismissSuggestions()
                     search_view.closeSearch()
 
-                    val index = list.indexOf(adapterView.getItemAtPosition(i).toString())
+                    val index = suggestions!!.indexOf(adapterView.getItemAtPosition(i).toString())
                     breathalyser.addAlcohol(AlcoholData(alcoholList!![index], 1))
 
                     myAdapter?.notifyDataSetChanged()
@@ -136,5 +137,8 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     override fun onDatabaseReady(db: AppDatabase) {
         this.db = db
         alcoholList = db.alcoholDAO().getAll()
+
+        val size = alcoholList!!.size
+        suggestions = Array(size) {i -> ("${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml") }
     }
 }
