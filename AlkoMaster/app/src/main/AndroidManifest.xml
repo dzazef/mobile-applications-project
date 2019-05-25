@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="pl.am2019.alkomaster">
+    package="pl.am2019.alkomaster">
 
     <application
             android:allowBackup="true"
@@ -27,6 +27,7 @@
 
         <activity android:name=".breathalyser.Results">
         </activity>
+        <activity android:name=".activities.ComparatorActivity" android:parentActivityName=".activities.MainActivity"/>
 
     </application>
 

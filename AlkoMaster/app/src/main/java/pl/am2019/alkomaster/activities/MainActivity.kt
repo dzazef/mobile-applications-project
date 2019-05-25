@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.activities.comparator_history.ComparatorHistoryActivity
 import pl.am2019.alkomaster.breathalyser.LevelActivityData
@@ -14,6 +15,8 @@ import pl.am2019.alkomaster.db.OpenDatabase
 
 class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     private var db: AppDatabase? = null
+
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +35,17 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
         DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
     }
 
-    fun onClick(v: View) {
-        val intent = Intent(this, ComparatorHistoryActivity::class.java)
-        startActivity(intent)
-    }
 
     fun startAlcoholLevelActivity(v : View) {
         val myIntent = Intent(this, LevelActivityData::class.java )
         startActivity(myIntent)
+    }
+
+    fun onClick(v: View) {
+        if (v == compbutton){
+            val myIntent = Intent(this, ComparatorActivity::class.java)
+            startActivity(myIntent)
+        }
     }
 }
 
