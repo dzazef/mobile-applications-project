@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AlkoMaster</string>
-    <string name="incorrect_value">Incorrect value</string>
+    <string name="incorrect_value">Niewłaściwe dane</string>
     <string name="alkomat_button">Alkomat</string>
     <string name="kalkulator_button">Kalkulator</string>
     <string name="alkomat_textView">Kalkulator do obliczania poziomu alkoholu we krwi</string>
@@ -13,7 +13,7 @@
     <string name="textView_koniec">Czas zakończenia</string>
     <string name="godzina">%1$s:%2$s</string>
     <string name="button_dalej">Dalej</string>
-    <string name="szukaj">Szukaj</string>
+    <string name="szukaj">Znajdź alkohol</string>
     <string name="wyszukaj_alkohol">Znajdź alkohol</string>
     <string name="dodaj_alkohol">Dodaj alkohol</string>
     <string name="historia_alkomatu">Historia alkomatu</string>

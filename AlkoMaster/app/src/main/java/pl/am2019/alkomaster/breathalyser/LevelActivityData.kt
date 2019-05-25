@@ -129,7 +129,6 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
     }
 
     fun startNextActivity(view: View) {
-        //TODO wysyla zabrane dane i rozpoczyna nowa aktywnosc
         try {
             val weight: Int = (linearLayout_weight.editText_waga).text.toString().toInt()
             val start: String = (linearLayout2.linearLayout_poczatek.textClock_poczatek).text.toString()
