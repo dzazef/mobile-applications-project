@@ -22,4 +22,7 @@ interface AlcoholDAO {
     //Uwaga tutaj xD
     @Query("DELETE FROM alcohol")
     fun dropAll()
+
+    @Query("UPDATE alcohol SET name = :name, capacity = :capacity, content = :content, price = :price WHERE id = :id")
+    fun update(name : String, capacity : Int, content: Double, price : Double, id : Long)
 }
