@@ -21,7 +21,6 @@ data class BreathalyserHistory (
     @ColumnInfo(name = "drinking_time")
     var drinkingTime : Double,
 
-
     //ilość czystego alkoholu w gramach
     @ColumnInfo(name = "quantity")
     var quantity : Double,

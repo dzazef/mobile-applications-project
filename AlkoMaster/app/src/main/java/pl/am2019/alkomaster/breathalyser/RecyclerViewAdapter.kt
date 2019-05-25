@@ -28,16 +28,6 @@ class RecyclerViewAdapter(private val dataset: ArrayList<AlcoholData>, val conte
         override fun onClick(v: View?) {
             //TODO edycja procentow (wtedy trzeba dodac pole procenty w klasie AlcoholData)
 
-
-            /*
-            if(v == buttonPlus) {
-                //Toast.makeText(v.context, "ok!", Toast.LENGTH_SHORT).show()
-                dataset[view.tag as Int].amount++
-                Toast.makeText(view.context, dataset[view.tag as Int].amount.toString(), Toast.LENGTH_SHORT).show()
-                notifyDataSetChanged()
-            }
-            */
-
             when(v) {
                 buttonPlus -> {
                     dataset[view.tag as Int].amount++

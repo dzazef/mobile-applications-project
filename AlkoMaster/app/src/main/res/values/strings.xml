@@ -15,8 +15,22 @@
     <string name="button_dalej">Dalej</string>
     <string name="szukaj">Szukaj</string>
     <string name="wyszukaj_alkohol">Znajdź alkohol</string>
+    <string name="dodaj_alkohol">Dodaj alkohol</string>
+    <string name="historia_alkomatu">Historia alkomatu</string>
     <string name="brak_alkoholi">Brak dodanych alkoholi</string>
     <string name="alcohol_content_text">%.1f %%</string>
     <string name="alcohol_capacity_text">%1$d ml</string>
     <string name="alcohol_amount_text">%1$d x</string>
+    <string name="alcohol_amount_textView">Ilość wypitego czystego alkoholu: %1$d ml</string>
+    <string name="alcohol_blood_content_textView">Szczytowy poziom alkoholu: %.2f‰</string>
+    <string name="error">Wystąpił błąd</string>
+    <string name="poziom_alkoholu_label_chart">Poziom alkoholu we krwi</string>
+    <plurals name="time_to_sobriety_textView">
+        <item quantity="zero">Całkowita trzeźwość po %d godzinach</item>
+        <item quantity="one">Całkowita trzeźwość po %d godzinie</item>
+        <item quantity="few">Całkowita trzeźwość po %d godzinach</item>
+        <item quantity="other">Całkowita trzeźwość po %d godzinach</item>
+    </plurals>
+    <string name="breathalyser_description">Prezentowane wyżej wyniki należy traktować orientacyjnie.
+        Jeśli zależy ci na dokładnym pomiarze, użyj prawdziwego alkomatu dostępnego na każdym posterunku policji.</string>
 </resources>

@@ -1,8 +1,12 @@
 package pl.am2019.alkomaster.breathalyser
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
 import android.widget.TextView
@@ -10,6 +14,11 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.alcohol_level_activity.*
 import kotlinx.android.synthetic.main.alcohol_level_activity.view.*
 import pl.am2019.alkomaster.R
+import pl.am2019.alkomaster.activities.AddAlcoholDialog
+import pl.am2019.alkomaster.activities.DatabaseNotFoundDialogFragment
+import pl.am2019.alkomaster.db.AppDatabase
+import pl.am2019.alkomaster.db.OpenDatabase
+import pl.am2019.alkomaster.db.breathalyser_history.BreathalyserHistory
 import java.lang.NumberFormatException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,12 +27,19 @@ import java.util.*
 /**
  * aktywnosc umozliwia wprowadzenie podstawowych danych (plec, waga i czas) potrzebnych do obliczenia poziomu alkoholu we krwi
  */
-class LevelActivityData : AppCompatActivity() {
+class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     private var type : String? = "female" //domyslnie female
+    private var db: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.alcohol_level_activity)
+        actionBar?.hide()
+
+        //przygotowanie bazy
+        val open = OpenDatabase(this)
+        open.setOpenDatabaseListener(this)
+        open.load()
 
         //ustawienie godziny rozpoczecia i konca na aktualna godzine
         val dateFormat = SimpleDateFormat("HH:mm", Locale.ENGLISH)
@@ -42,6 +58,39 @@ class LevelActivityData : AppCompatActivity() {
                 "female" -> radioButton_female.isChecked = true
             }
         }
+    }
+
+    override fun onDatabaseReady(db: AppDatabase) {
+        this.db = db
+    }
+
+    override fun onDatabaseFail() {
+        DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.breathalyser_menu_item, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.action_add -> {
+                if (db != null) {
+                    val dialog = AddAlcoholDialog(this, db!!)
+                    dialog.show()
+                    return true
+                } else {
+                    DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+                }
+            }
+            R.id.action_history -> {
+                //rozpoczac aktywnosc historii
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

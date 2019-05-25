@@ -20,9 +20,12 @@
         </activity>
 
         <activity android:name=".breathalyser.LevelActivityData">
-        </activity>
+    </activity>
 
         <activity android:name=".breathalyser.AlcoholLevelAlcohols">
+        </activity>
+
+        <activity android:name=".breathalyser.Results">
         </activity>
 
     </application>

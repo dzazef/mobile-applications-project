@@ -4,14 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.alcohol_list.*
 import pl.am2019.alkomaster.R
+import pl.am2019.alkomaster.activities.AddAlcoholDialog
+import pl.am2019.alkomaster.activities.DatabaseNotFoundDialogFragment
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
@@ -38,6 +43,8 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.alcohol_list)
+
+        actionBar?.hide()
 
         //pobranie wartosci przeslanych przez poprzednia aktywnosc
         weight = intent.getIntExtra("weight", 0)
@@ -87,6 +94,19 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         outState?.putParcelableArrayList("added_alcohols", breathalyser.alcoholList)
     }
 
+    //zaczyna aktywnosc prezentujaca wyniki
+    fun showResults(view: View) {
+        val myintent = Intent(this, Results::class.java )
+
+        myintent.putExtra("weight", weight)
+        myintent.putExtra("sex", type)
+        myintent.putExtra("start", start)
+        myintent.putExtra("end", end)
+        myintent.putExtra("alcohol_list", breathalyser.alcoholList)
+
+        ActivityCompat.startActivityForResult(this, myintent, 111, null)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_item, menu)
 
@@ -104,6 +124,25 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         }
 
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.action_add -> {
+                if (db != null) {
+                    val dialog = AddAlcoholDialog(this, db!!)
+                    dialog.show()
+                    return true
+                } else {
+                    DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+                }
+            }
+            R.id.action_history -> {
+                //rozpoczac aktywnosc historii
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

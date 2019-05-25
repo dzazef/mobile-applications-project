@@ -88,15 +88,3 @@
             app:layout_constraintGuide_percent="0.8091603"/>
 
 </android.support.constraint.ConstraintLayout>
-
-<!--
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/alcohol_item"
-            android:orientation="horizontal">
-
-
-
-</LinearLayout>
--->
