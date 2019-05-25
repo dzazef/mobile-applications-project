@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">AlkoMaster</string>
-<<<<<<< HEAD
     <string name="incorrect_value">Niewłaściwe dane</string>
     <string name="alkomat_button">Alkomat</string>
     <string name="kalkulator_button">Kalkulator</string>

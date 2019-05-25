@@ -1,6 +1,5 @@
 package pl.am2019.alkomaster.activities
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -10,7 +9,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.comparator_activity.*
-
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
@@ -19,6 +17,9 @@ import kotlin.collections.ArrayList
 
 
 class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
+    override fun onDatabaseFail() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var db: AppDatabase? = null
     var alks = ArrayList<Alcohol>()
@@ -85,18 +86,6 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
 
     override fun onDatabaseReady(db: AppDatabase) {
         this.db = db
-        AsyncTask.execute {
-            db.alcoholDAO().dropAll()
-            db.breathalyserHistoryDAO().dropAll()
-            db.comparatorAlcoholDAO().dropAll()
-            db.comparatorHistoryDAO().dropAll()
-            val c = Alcohol(name = "piwo1", capacity = 1000, price = 38.5, content = 40.0)
-            val a = Alcohol(name = "piwo", capacity = 500, price = 3.5, content = 5.5)
-            val b = Alcohol(name = "piwo2", capacity = 500, price = 10.5, content = 13.0)
-            val d = Alcohol(name = "wóda", capacity = 1000, price = 38.5, content = 40.0)
-            val e = Alcohol(name = "piwk", capacity = 1000, price = 38.5, content = 6.0)
-            db.alcoholDAO().insertAll(a, b, c,d,e)
-        }
     }
 
 

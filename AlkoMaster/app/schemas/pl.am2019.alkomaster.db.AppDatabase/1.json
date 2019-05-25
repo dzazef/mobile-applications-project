@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f8728965fba2e556e136d9286651b53e",
+    "identityHash": "2337b71037049f7b72e65c2891075466",
     "entities": [
       {
         "tableName": "alcohol",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `capacity` INTEGER NOT NULL, `content` REAL NOT NULL, `price` REAL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `capacity` INTEGER NOT NULL, `content` REAL NOT NULL, `price` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -36,7 +36,7 @@
             "fieldPath": "price",
             "columnName": "price",
             "affinity": "REAL",
-            "notNull": false
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -203,7 +203,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f8728965fba2e556e136d9286651b53e\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2337b71037049f7b72e65c2891075466\")"
     ]
   }
 }

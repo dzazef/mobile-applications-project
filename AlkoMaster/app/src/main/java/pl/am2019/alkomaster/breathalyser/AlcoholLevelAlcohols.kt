@@ -95,7 +95,7 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     }
 
     //zaczyna aktywnosc prezentujaca wyniki
-    fun showResults(view: View) {
+    fun showResults(@Suppress("UNUSED_PARAMETER") view: View) {
         val myintent = Intent(this, Results::class.java )
 
         myintent.putExtra("weight", weight)

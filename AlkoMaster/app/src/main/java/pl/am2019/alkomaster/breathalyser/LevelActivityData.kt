@@ -1,10 +1,8 @@
 package pl.am2019.alkomaster.breathalyser
 
 import android.content.Intent
-import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,8 +16,6 @@ import pl.am2019.alkomaster.activities.AddAlcoholDialog
 import pl.am2019.alkomaster.activities.DatabaseNotFoundDialogFragment
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
-import pl.am2019.alkomaster.db.breathalyser_history.BreathalyserHistory
-import java.lang.NumberFormatException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -128,7 +124,7 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
         }
     }
 
-    fun startNextActivity(view: View) {
+    fun startNextActivity(@Suppress("UNUSED_PARAMETER") view: View) {
         try {
             val weight: Int = (linearLayout_weight.editText_waga).text.toString().toInt()
             val start: String = (linearLayout2.linearLayout_poczatek.textClock_poczatek).text.toString()

@@ -23,22 +23,15 @@ data class Alcohol (
     var content: Double,
 
     @ColumnInfo(name = "price")
-    var price: Double?
+    var price: Double
 ) : Parcelable {
-    private constructor(parcel: Parcel) : this(
-        id = parcel.readLong(),
-        name = parcel.readString(),
-        capacity = parcel.readInt(),
-        content = parcel.readDouble(),
-        price = parcel.readDouble()
-    )
-
-    companion object {
-        @JvmField
-        val CREATOR = object : Parcelable.Creator<Alcohol> {
-            override fun createFromParcel(parcel: Parcel) = Alcohol(parcel)
-            override fun newArray(size: Int) = arrayOfNulls<Alcohol>(size)
-        }
+    constructor(parcel: Parcel) : this(
+        parcel.readLong(),
+        parcel.readString(),
+        parcel.readInt(),
+        parcel.readDouble(),
+        parcel.readDouble()
+    ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -46,10 +39,20 @@ data class Alcohol (
         parcel.writeString(name)
         parcel.writeInt(capacity)
         parcel.writeDouble(content)
-        if(price != null) {
-            parcel.writeDouble(price!!)
-        }
+        parcel.writeDouble(price)
     }
 
-    override fun describeContents() = 0
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Alcohol> {
+        override fun createFromParcel(parcel: Parcel): Alcohol {
+            return Alcohol(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Alcohol?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
