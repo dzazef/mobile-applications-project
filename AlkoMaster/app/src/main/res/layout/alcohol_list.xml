@@ -37,10 +37,11 @@
                  app:layout_constraintEnd_toEndOf="parent"
                  android:id="@+id/frameLayout">
 
+        <!--
         <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="?attr/actionBarSize" /> -->
 
         <com.miguelcatalan.materialsearchview.MaterialSearchView
                 android:id="@+id/search_view"
