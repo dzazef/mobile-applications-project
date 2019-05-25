@@ -17,12 +17,12 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
 
         val alko = alcohols[position]
         holder.name.text = alko.name
-        holder.price.text = alko.price.toString()
-        holder.content.text = alko.content.toString()
-        holder.capacity.text = alko.capacity.toString()
-
-
-        // wzor: content / 100 * capacity / price
+        //holder.price.text = alko.price.toString()
+        //holder.content.text = alko.content.toString()
+        //holder.capacity.text = alko.capacity.toString()
+        holder.capacity.text = context.getString(R.string.alcohol_capacity_text, alko.capacity)
+        holder.content.text = context.getString(R.string.alcohol_content_text, alko.content)
+        holder.price.text = context.getString(R.string.alcohol_price_text, alko.price)
 
     }
 
@@ -41,8 +41,6 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
         var capacity = itemView.findViewById(R.id.capacity) as TextView
         var content = itemView.findViewById(R.id.content) as TextView
         var price = itemView.findViewById(R.id.price) as TextView
-
-
     }
 
     fun getItems(): List<Alcohol> {
@@ -50,12 +48,3 @@ class MyAdapter(val context: Context, val alcohols: List<Alcohol>) : RecyclerVie
 
     }
 }
-
-
-
-
-
-
-
-
-

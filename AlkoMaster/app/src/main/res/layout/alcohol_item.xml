@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- do wykorzystania w liscie wybranych alkoholi do alkomatu (chyba mozna tez wykorzystac w porownywarce?) -->
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +10,8 @@
                                              android:rowCount="2"
                                              android:useDefaultMargins="true">
 
-    <TextView android:layout_height="0dp" android:layout_width="0dp"
+    <!-- w nazwie wysokosc byla 0dp, czasem nazwa sie nie miescila -->
+    <TextView android:layout_height="wrap_content" android:layout_width="0dp"
               android:text="nazwa"
               android:textAppearance="@style/TextAppearance.AppCompat.Large"
               android:textAlignment="center"

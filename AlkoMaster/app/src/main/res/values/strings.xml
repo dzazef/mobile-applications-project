@@ -21,10 +21,14 @@
     <string name="alcohol_content_text">%.1f %%</string>
     <string name="alcohol_capacity_text">%1$d ml</string>
     <string name="alcohol_amount_text">%1$d x</string>
+    <string name="alcohol_price_text">%.2f zł</string>
     <string name="alcohol_amount_textView">Ilość wypitego czystego alkoholu: %1$d ml</string>
     <string name="alcohol_blood_content_textView">Szczytowy poziom alkoholu: %.2f‰</string>
     <string name="error">Wystąpił błąd</string>
     <string name="poziom_alkoholu_label_chart">Poziom alkoholu we krwi</string>
+    <string name="porownaj">Porównaj</string>
+    <string name="dodaj_do_bazy">Dodaj do bazy</string>
+    <string name="swipe">swipe to delete</string>
     <plurals name="time_to_sobriety_textView">
         <item quantity="zero">Całkowita trzeźwość po %d godzinach</item>
         <item quantity="one">Całkowita trzeźwość po %d godzinie</item>
