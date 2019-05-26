@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.am2019.alkomaster.R
+import pl.am2019.alkomaster.breathalyser.CalculatorHistory
 import pl.am2019.alkomaster.breathalyser.LevelActivityData
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
