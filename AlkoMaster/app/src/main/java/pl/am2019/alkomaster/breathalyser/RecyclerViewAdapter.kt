@@ -55,21 +55,21 @@ class RecyclerViewAdapter(private val dataset: ArrayList<AlcoholData>, val activ
 
             when(v) {
                 buttonPlus -> {
-                    dataset[view.tag as Int].amount++
+                    dataset[adapterPosition].amount++
                     notifyDataSetChanged()
                 }
                 buttonMinus -> {
-                    if(dataset[view.tag as Int].amount > 1) {
-                        dataset[view.tag as Int].amount--
+                    if(dataset[adapterPosition].amount > 1) {
+                        dataset[adapterPosition].amount--
                         notifyDataSetChanged()
                     }
                 }
                 buttonX -> {
-                    dataset.removeAt(view.tag as Int)
+                    dataset.removeAt(adapterPosition)
                     notifyDataSetChanged()
                 }
                 layout -> {
-                    val dialog = EditAlcoholDialog(activity = activity, callback = this@RecyclerViewAdapter, alcohol = dataset[this.adapterPosition].type, position = view.tag as Int)
+                    val dialog = EditAlcoholDialog(activity = activity, callback = this@RecyclerViewAdapter, alcohol = dataset[this.adapterPosition].type, position = adapterPosition)
                     dialog.show()
                 }
             }
@@ -97,8 +97,6 @@ class RecyclerViewAdapter(private val dataset: ArrayList<AlcoholData>, val activ
 
         holder.view.findViewById<TextView>(R.id.alcohol_item_amount).text =
             activity.getString(R.string.alcohol_amount_text, dataset[position].amount)
-
-        holder.view.tag = position
     }
 
     override fun getItemCount(): Int = dataset.size

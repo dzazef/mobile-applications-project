@@ -79,7 +79,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Usuń" />
+            android:text="Usuń"
+            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>
