@@ -6,19 +6,26 @@
              android:layout_height="wrap_content"
              android:id="@+id/c_root_alcohol_item"
              android:orientation="horizontal"
-             android:background="@drawable/listshape"
+
              android:layout_marginRight="10dp" android:layout_marginLeft="10dp"
-             android:layout_marginTop="10dp">
+             android:layout_marginTop="10dp"
+   android:background="@drawable/listshape">
 
     <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_margin="5dp">
-        <ImageView android:layout_width="50dp" android:layout_height="50dp"
-                   android:contentDescription="@null" android:id="@+id/chc_imv"
-                   android:background="@drawable/mugs" android:textAlignment="center"
-                   android:layout_margin="5dp"/>
+
+        <ImageView
+            android:id="@+id/chc_imv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/beer"
+            android:contentDescription="@null"
+            android:textAlignment="center" />
         <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"
                   android:text="name" android:id="@+id/chc_name"
+            android:textColor="#FFA500"
 
                   android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textAlignment="center"
                   android:layout_margin="5dp"
@@ -30,6 +37,7 @@
         <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"
                   android:text="ml"
                   android:id="@+id/chc_capacity"
+            android:textColor="#FFA500"
                   android:background="@drawable/listshape" android:textAlignment="center"
                   android:layout_margin="5dp"/>
         <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"
@@ -37,6 +45,7 @@
 
                   android:id="@+id/chc_content"
                   android:textAlignment="center"
+            android:textColor="#FFA500"
                   android:layout_margin="5dp"/>
     </TableRow>
 
@@ -49,6 +58,7 @@
                 android:text="price"
                 android:layout_height="wrap_content" android:id="@+id/chc_price" android:textAlignment="center"
                 android:layout_width="wrap_content"
+            android:textColor="#FFA500"
         />
     </TableRow>
 

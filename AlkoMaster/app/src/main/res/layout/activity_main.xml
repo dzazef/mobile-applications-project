@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="@drawable/ba">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -17,8 +18,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.237">
 
         <Button
             android:id="@+id/compbutton"
@@ -27,16 +30,18 @@
             android:layout_margin="5dp"
             android:background="@drawable/listshape"
             android:onClick="onClick"
-            android:text="@string/comp" />
+            android:text="@string/comp"
+            android:textColor="#FFA500" />
 
         <Button
-            android:onClick="startAlcoholLevelActivity"
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:background="@drawable/listshape"
-            android:text="@string/calc" />
+            android:onClick="startAlcoholLevelActivity"
+            android:text="@string/calc"
+            android:textColor="#FFA500" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

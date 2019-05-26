@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="horizontal">
+              android:orientation="horizontal"
+    android:background="@color/menuItemColor">
 
     <TextView android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_weight="1"
               android:textSize="20sp"
+        android:textColor="#000"
               android:id="@+id/alcohol_name"
     />
 
@@ -16,6 +18,7 @@
               android:layout_weight="1"
               android:id="@+id/alcohol_capacity"
               android:textAlignment="center"
+        android:textColor="#000"
     />
 
 </LinearLayout>

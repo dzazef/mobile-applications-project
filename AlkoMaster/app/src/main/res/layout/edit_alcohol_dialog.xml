@@ -3,14 +3,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@drawable/back">
 
     <TextView
-            android:text="@string/name_add_alcohol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editalc_txt_name"
-            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+        android:id="@+id/editalc_txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#FFA500"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/name_add_alcohol"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,42 +23,64 @@
             android:ems="10"
             android:id="@+id/editalc_ptxt_name"
             android:hint="@string/name_add_alcohol"
+        android:textColor="#FFA500"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+
     <TextView
-            android:text="@string/capacity_add_alcohol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/editalc_txt_capacity"
-            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+        android:id="@+id/editalc_txt_capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFA500"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/capacity_add_alcohol"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
+        android:textColor="#FFA500"
             android:id="@+id/editalc_ptxt_capacity"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+
     <TextView
-            android:text="@string/content_add_alcohol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editalc_txt_content"
-            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+        android:id="@+id/editalc_txt_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="#FFA500"
+        android:text="@string/content_add_alcohol"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
+        android:textColor="#FFA500"
             android:ems="10"
             android:id="@+id/editalc_ptxt_content"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+
     <TextView
-            android:text="@string/price_add_alcohol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/editalc_txt_price"
-            android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
+        android:id="@+id/editalc_txt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFA500"
+        android:layout_marginBottom="5dp"
+        android:text="@string/price_add_alcohol"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
+        android:textColor="#FFA500"
             android:id="@+id/editalc_ptxt_price"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
 
@@ -67,9 +94,12 @@
             android:id="@+id/editalc_btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center"
+            android:textColor="#FFA500"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:background="@drawable/listshape"
             android:text="@string/add_add_alcohol" />
 
         <Button
@@ -78,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
+            android:textColor="#FFA500"
             android:layout_marginBottom="5dp"
             android:text="@string/delete_edit_alcohol"
             android:visibility="gone" />
