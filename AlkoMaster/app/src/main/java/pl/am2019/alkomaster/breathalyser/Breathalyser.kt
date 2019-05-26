@@ -4,7 +4,7 @@ import android.content.Context
 import pl.am2019.alkomaster.HumanFactory
 import pl.am2019.alkomaster.R
 
-class Breathalyser(val weight: Int, val sex: String, val start: String) {
+class Breathalyser(val weight: Int, val sex: String, private val start: String) {
 
     var alcoholList: ArrayList<AlcoholData> = ArrayList()
     private val constBodyWaterInBlood = 0.806
@@ -23,7 +23,7 @@ class Breathalyser(val weight: Int, val sex: String, val start: String) {
     //oblicza poziom alkoholu we krwi w promilach na podstawie godziny konca, zaokraglony do dwoch miejsc po przecinku
     fun getBloodAlcoholContent(end: String) : Double {
         //TODO
-        var bloodAlcoholContent: Double = 0.0
+        var bloodAlcoholContent = 0.0
         val SD = getTotalAmountOfAlcohol()/10 //ilosc drinkow, kazdy po 10 gram (przyjmuje, ze 1 mililitr wazy 1 gram)
         val human = HumanFactory.createHuman(sex, weight)
         val DP = timeDifference(end) // drinking period in hours
@@ -44,7 +44,7 @@ class Breathalyser(val weight: Int, val sex: String, val start: String) {
     //oblicza poziom alkoholu we krwi w promilach na podstawie ilosci godzin, ktore minely od rozpoczecia, zaokraglony do dwoch miejsc po przecinku
     fun getBloodAlcoholContent(period: Double) : Double {
         //TODO
-        var bloodAlcoholContent: Double = 0.0
+        var bloodAlcoholContent = 0.0
         val SD = getTotalAmountOfAlcohol()/10 //ilosc drinkow, kazdy po 10 gram (przyjmuje, ze 1 mililitr wazy 1 gram)
         val human = HumanFactory.createHuman(sex, weight)
         val DP = period // drinking period in hours
@@ -64,7 +64,7 @@ class Breathalyser(val weight: Int, val sex: String, val start: String) {
 
     //ilosc czystego alkoholu w spozytym alkoholu
     fun getTotalAmountOfAlcohol() : Double { //w mililitrach
-        var totalAmountOfAlcohol: Double = 0.0
+        var totalAmountOfAlcohol = 0.0
         for(alcoholData in alcoholList) {
             totalAmountOfAlcohol += alcoholData.getTotalAmountOfAlcohol()
         }
@@ -75,15 +75,15 @@ class Breathalyser(val weight: Int, val sex: String, val start: String) {
     fun timeDifference(end: String) : Double { //na api 22 nie dzialaly zadne daty i godziny :(
 
         val endHour = end.split(":")
-        var endHours = Integer.parseInt(endHour[0])
-        var endMinutes = Integer.parseInt(endHour[1])
+        val endHours = Integer.parseInt(endHour[0])
+        val endMinutes = Integer.parseInt(endHour[1])
 
         val startHour = start.split(":")
-        var startHours = Integer.parseInt(startHour[0])
-        var startMinutes = Integer.parseInt(startHour[1])
+        val startHours = Integer.parseInt(startHour[0])
+        val startMinutes = Integer.parseInt(startHour[1])
 
-        var result: Double = 0.0
-        var numberOfMinutes: Int = 0
+        val result: Double
+        var numberOfMinutes = 0
 
         if(endHours > startHours) {
             numberOfMinutes = (endHours * 60 + endMinutes) - (startHours * 60 + startMinutes)

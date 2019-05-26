@@ -27,7 +27,7 @@ class ComparatorHistoryActivity : AppCompatActivity(), OpenDatabase.OpenDatabase
     }
 
     override fun onDatabaseFail() {
-        runOnUiThread { ch_txt_info.text = "Failed to read database!" }
+        runOnUiThread { ch_txt_info.text = getString(R.string.database_load_error) }
     }
 
 
@@ -47,7 +47,7 @@ class ComparatorHistoryActivity : AppCompatActivity(), OpenDatabase.OpenDatabase
 
         //Show message about waiting for database
         ch_txt_info.visibility = View.VISIBLE
-        ch_txt_info.text = "Waiting for database..."
+        ch_txt_info.text = getString(R.string.wait_for_database)
 
         //Call Database
         OpenDatabase(this).also {

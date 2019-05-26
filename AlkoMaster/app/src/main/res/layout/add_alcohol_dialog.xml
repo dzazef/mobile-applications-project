@@ -6,7 +6,7 @@
               android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
 
     <TextView
-            android:text="Nazwa"
+            android:text="@string/name_add_alcohol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/addalc_txt_name"
@@ -17,10 +17,10 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/addalc_ptxt_name"
-            android:hint="Nazwa"
+            android:hint="@string/name_add_alcohol"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <TextView
-            android:text="Pojemność"
+            android:text="@string/capacity_add_alcohol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/addalc_txt_capacity"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
@@ -32,7 +32,7 @@
             android:id="@+id/addalc_ptxt_capacity"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <TextView
-            android:text="Zawartość alkoholu"
+            android:text="@string/content_add_alcohol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/addalc_txt_content"
@@ -45,7 +45,7 @@
             android:id="@+id/addalc_ptxt_content"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <TextView
-            android:text="Cena"
+            android:text="@string/price_add_alcohol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/addalc_txt_price"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
@@ -57,7 +57,7 @@
             android:id="@+id/addalc_ptxt_price"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
     <Button
-            android:text="Dodaj"
+            android:text="@string/add_add_alcohol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/addalc_btn_add"

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2337b71037049f7b72e65c2891075466",
+    "identityHash": "61384d3a14373eef0c855617b634d799",
     "entities": [
       {
         "tableName": "alcohol",
@@ -45,7 +45,16 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_alcohol_name",
+            "unique": false,
+            "columnNames": [
+              "name"
+            ],
+            "createSql": "CREATE  INDEX `index_alcohol_name` ON `${TABLE_NAME}` (`name`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
@@ -203,7 +212,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2337b71037049f7b72e65c2891075466\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"61384d3a14373eef0c855617b634d799\")"
     ]
   }
 }

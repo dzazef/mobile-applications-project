@@ -30,7 +30,7 @@ class ParentAdapter(list : MutableList<Pair<ComparatorHistory, List<Alcohol>>>, 
 
     override fun onBindViewHolder(holder: ViewHolder, p1: Int) {
         val item = itemList[p1]
-        holder.date.text = "DateTime: ${dateFormat.format(item.first.dateTime)}"
+        holder.date.text = context.getString(R.string.date_time_comparator_history, dateFormat.format(item.first.dateTime))
 
         val childLayoutManager = LinearLayoutManager(holder.recyclerView.context, LinearLayout.HORIZONTAL, false)
 

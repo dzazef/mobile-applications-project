@@ -1,5 +1,7 @@
 package pl.am2019.alkomaster
 
+import pl.am2019.alkomaster.breathalyser.Female
+
 /**
  * statyczna metoda do tworzenia obiektu Human z podana waga
  */

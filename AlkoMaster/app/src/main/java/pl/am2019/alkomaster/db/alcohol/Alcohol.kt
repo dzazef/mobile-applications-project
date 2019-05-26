@@ -2,12 +2,16 @@ package pl.am2019.alkomaster.db.alcohol
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 
 //implementuje interfejs Parcelable potrzebny do zapisu przy rotacji
-@Entity(tableName = "alcohol")
+@Entity(
+    tableName = "alcohol",
+    indices = [Index(value = ["name"])]
+)
 data class Alcohol (
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)

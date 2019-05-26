@@ -1,4 +1,6 @@
-package pl.am2019.alkomaster
+package pl.am2019.alkomaster.breathalyser
+
+import pl.am2019.alkomaster.Human
 
 
 /**
