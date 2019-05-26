@@ -11,17 +11,22 @@ import pl.am2019.alkomaster.db.breathalyser_history.BreathalyserHistory
 import java.math.RoundingMode
 import java.text.SimpleDateFormat
 
-
 class HistoryAdapter (val items : List<BreathalyserHistory>, val context: Context) : RecyclerView.Adapter<HistoryAdapter.MyViewHolder>() {
     
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val bhist = items[position]
+
         holder.gender.text = bhist.gender
         holder.weight.text = bhist.weight.toString().plus(" kg")
         holder.drinkingtime.text = bhist.drinkingTime.toBigDecimal().setScale(1, RoundingMode.CEILING).toString().plus(" h")
         holder.quantity.text = bhist.quantity.toBigDecimal().setScale(1, RoundingMode.CEILING).toString().plus(" g")
-        holder.date.text = bhist.dateTime.toString()
+
+        val pattern = "HH:mm  dd-MM-yy"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        val date = simpleDateFormat.format(bhist.dateTime)
+        holder.date.text = date
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, convertVie: Int): MyViewHolder {
