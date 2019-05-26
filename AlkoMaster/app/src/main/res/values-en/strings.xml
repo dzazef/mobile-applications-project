@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlkoMaster</string>
+    <string name="add_add_alcohol">Add</string>
+    <string name="content_add_alcohol">Alkohol content</string>
+    <string name="comp">comparator</string>
+    <string name="calc">breathalyser</string>
+    <string name="button_dalej">Next</string>
+    <string name="capacity_add_alcohol">Capacity</string>
+    <string name="brak_alkoholi">No alcohol data found</string>
+    <string name="alkomat_textView">Breathalyser</string>
+    <string name="breathalyser_button">Breathalyser</string>
+    <string name="alcohol_blood_content_textView">Max alcohol level: %.2f‰</string>
+    <string name="alcohol_amount_textView">Pure alcohol consumed: %1$d ml</string>
+    <string name="breathalyser_description">Results presented above may be inaccurate. To acquire precise results use real breathalyser avaliable at every police station.</string>
+    <string name="database_load_error" translatable="false">Error while loading database</string>
+    <string name="date_time_comparator_history">Date: %1$s</string>
+    <string name="delete_edit_alcohol">Delete</string>
+    <string name="dodaj_alkohol">Add alcohol</string>
+    <string name="dodaj_do_bazy">Add to database</string>
+    <string name="editText_waga">Your weight</string>
+    <string name="error">Error occurred</string>
+    <string name="historia_alkomatu">Breathalyser history</string>
+    <string name="incorrect_value">Incorrect data</string>
+    <string name="kalkulator_button">Calculator</string>
+    <string name="name_add_alcohol">Name</string>
+    <string name="porownaj">Compare</string>
+    <string name="poziom_alkoholu_label_chart">Alcohol level</string>
+    <string name="price_add_alcohol">Price</string>
+    <plurals name="time_to_sobriety_textView">
+        <item quantity="zero">Complete sobriety after %d hours</item>
+        <item quantity="one">Complete sobriety after %d hours</item>
+        <item quantity="few">Complete sobriety after %d hours</item>
+        <item quantity="other">Complete sobriety after %d hours</item>
+    </plurals>
+    <string name="female">Women</string>
+    <string name="male">Male</string>
+    <string name="return_dialog">Return</string>
+    <string name="sober_after">Sober after</string>
+    <string name="szukaj">Find alcohol</string>
+    <string name="textView_koniec">End time</string>
+    <string name="textView_poczatek">Begin time</string>
+    <string name="textView_waga">Weight:</string>
+    <string name="wait_for_database">Please wait, your data is being loaded…</string>
+    <string name="wyswietl_historie">show_history</string>
+    <string name="wyszukaj_alkohol">Find alcohol</string>
+</resources>

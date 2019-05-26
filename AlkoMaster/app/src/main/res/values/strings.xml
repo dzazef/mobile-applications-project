@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">AlkoMaster</string>
+    <string name="incorrect_value">Niewłaściwe dane</string>
+    <string name="breathalyser_button">Alkomat</string>
+    <string name="kalkulator_button">Kalkulator</string>
+    <string name="alkomat_textView">Kalkulator do obliczania poziomu alkoholu we krwi</string>
+    <string name="female">Kobieta</string>
+    <string name="male">Mężczyzna</string>
+    <string name="textView_waga">Waga:</string>
+    <string name="editText_waga">Ile ważysz?</string>
+    <string name="textView_kg" translatable="false">kg</string>
+    <string name="textView_poczatek">Czas rozpoczęcia</string>
+    <string name="textView_koniec">Czas zakończenia</string>
+    <string name="godzina" translatable="false">%1$s:%2$s</string>
+    <string name="button_dalej">Dalej</string>
+    <string name="szukaj">Znajdź alkohol</string>
+    <string name="wyszukaj_alkohol">Znajdź alkohol</string>
+    <string name="dodaj_alkohol">Dodaj alkohol</string>
+    <string name="historia_alkomatu">Historia alkomatu</string>
+    <string name="brak_alkoholi">Brak dodanych alkoholi</string>
+    <string name="alcohol_content_text" translatable="false">%.1f %%</string>
+    <string name="alcohol_capacity_text" translatable="false">%1$d ml</string>
+    <string name="alcohol_amount_text" translatable="false">%1$d x</string>
+    <string name="alcohol_price_text" translatable="false">%.2f zł</string>
+    <string name="alcohol_amount_textView">Ilość wypitego czystego alkoholu: %1$d ml</string>
+    <string name="alcohol_blood_content_textView">Szczytowy poziom alkoholu: %.2f‰</string>
+    <string name="error">Wystąpił błąd</string>
+    <string name="poziom_alkoholu_label_chart">Poziom alkoholu we krwi</string>
+    <string name="porownaj">Porównaj</string>
+    <string name="dodaj_do_bazy">Dodaj do bazy</string>
+    <string name="swipe" translatable="false">swipe to delete</string>
+    <plurals name="time_to_sobriety_textView">
+        <item quantity="zero">Całkowita trzeźwość po %d godzinach</item>
+        <item quantity="one">Całkowita trzeźwość po %d godzinie</item>
+        <item quantity="few">Całkowita trzeźwość po %d godzinach</item>
+        <item quantity="other">Całkowita trzeźwość po %d godzinach</item>
+    </plurals>
+    <string name="breathalyser_description">Prezentowane wyżej wyniki należy traktować orientacyjnie.         Jeśli zależy ci na dokładnym pomiarze, użyj prawdziwego alkomatu dostępnego na każdym posterunku policji.</string>
+    <string name="calc">alkomat</string>
+    <string name="comp">porównywarka</string>
+    <string name="wyswietl_historie">wyswietl_historie</string>
+    <string name="database_load_error">Wystąpił błąd podczas wczytywania bazy</string>
+    <string name="wait_for_database">Proszę poczekać, dane są ładowane...</string>
+    <string name="date_time_comparator_history">Data: %1$s</string>
+    <string name="return_dialog">Powrót</string>
+    <string name="name_add_alcohol">Nazwa</string>
+    <string name="capacity_add_alcohol">Pojemność</string>
+    <string name="content_add_alcohol">Zawartość alkoholu</string>
+    <string name="price_add_alcohol">Cena</string>
+    <string name="add_add_alcohol">Dodaj</string>
+    <string name="delete_edit_alcohol">Usuń</string>
+    <string name="sober_after">Całkowita trzeźwość po</string>
+</resources>
