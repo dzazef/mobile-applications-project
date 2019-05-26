@@ -33,8 +33,8 @@
         <item quantity="few">Complete sobriety after %d hours</item>
         <item quantity="other">Complete sobriety after %d hours</item>
     </plurals>
-    <string name="radioButton_female">Women</string>
-    <string name="radioButton_male">Male</string>
+    <string name="female">Women</string>
+    <string name="male">Male</string>
     <string name="return_dialog">Return</string>
     <string name="sober_after">Sober after</string>
     <string name="szukaj">Find alcohol</string>

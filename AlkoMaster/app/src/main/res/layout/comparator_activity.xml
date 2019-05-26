@@ -101,10 +101,12 @@
         <com.miguelcatalan.materialsearchview.MaterialSearchView
             android:id="@+id/search_view_comparator"
             android:layout_width="match_parent"
+            app:searchBackground="@color/black"
             android:textColor="#FFA500"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
+            android:textColorHint="#FFA500"
             android:hint="@string/szukaj" />
 
     </FrameLayout>

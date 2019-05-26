@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="500dp"
+    android:background="#131313"
     android:layout_height="300dp">
 
     <android.support.constraint.Guideline
@@ -15,6 +16,8 @@
         android:id="@+id/editalc_txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFA500"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text="@string/add_add_alcohol"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editalcland_gdl1"
@@ -26,7 +29,9 @@
         android:id="@+id/editalc_ptxt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColorHint="#FFA500"
         android:ems="10"
+        android:textColor="#FFA500"
         android:hint="@string/add_add_alcohol"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,15 +48,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editalcland_gdl1"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#FFA500"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.55" />
 
     <EditText
         android:id="@+id/editalc_ptxt_capacity"
         android:layout_width="wrap_content"
+        android:textColor="#FFA500"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textColorHint="#FFA500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editalcland_gdl1"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +75,8 @@
         android:text="@string/content_add_alcohol"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#FFA500"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="@+id/editalcland_gdl1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2" />
@@ -75,7 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColor="#FFA500"
         android:inputType="numberDecimal"
+        android:textColorHint="#FFA500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/editalcland_gdl1"
@@ -91,6 +104,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/editalcland_gdl1"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#FFA500"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintVertical_bias="0.55" />
 
     <EditText
@@ -100,7 +115,9 @@
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#FFA500"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColorHint="#FFA500"
         app:layout_constraintStart_toStartOf="@+id/editalcland_gdl1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
@@ -111,6 +128,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/add_add_alcohol"
+        android:textColor="#FFA500"
+        android:background="@drawable/listshape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,6 +141,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete_edit_alcohol"
+        android:textColor="#FFA500"
+        android:background="@drawable/listshape"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

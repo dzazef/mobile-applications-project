@@ -49,8 +49,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/szukaj"
+            app:searchBackground="@color/black"
+            android:textColor="#FFA500"
                 android:clickable="true"
                 android:focusable="true"
+            android:textColorHint="#FFA500"
         />
 
     </FrameLayout>

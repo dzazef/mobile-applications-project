@@ -2,6 +2,7 @@ package pl.am2019.alkomaster.breathalyser
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.support.v4.app.ActivityCompat
@@ -122,6 +123,8 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         search_view.setMenuItem(item)
 
         search_view.setSuggestions(suggestions)
+
+        search_view.setSuggestionBackground(getDrawable(R.drawable.search_view_suggestion_background))
 
         search_view.setOnItemClickListener { adapterView, _, i, _ ->
             search_view.dismissSuggestions()

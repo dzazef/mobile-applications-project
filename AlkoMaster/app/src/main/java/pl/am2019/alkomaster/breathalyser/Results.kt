@@ -1,6 +1,7 @@
 package pl.am2019.alkomaster.breathalyser
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.github.mikephil.charting.charts.Chart
 import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase

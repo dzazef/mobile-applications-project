@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:buttonTint="@color/menuItemColor"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/radioButton_female"
+            android:text="@string/female"
             android:textColor="#FFA500" />
 
         <RadioButton
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:buttonTint="@color/menuItemColor"
             android:onClick="onRadioButtonClicked"
-            android:text="@string/radioButton_male"
+            android:text="@string/male"
             android:textColor="#FFA500" />
 
     </RadioGroup>

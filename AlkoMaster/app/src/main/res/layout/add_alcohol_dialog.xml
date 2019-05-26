@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
+        android:textColorHint="#FFA500"
             android:id="@+id/addalc_ptxt_name"
         android:textColor="#FFA500"
             android:hint="@string/name_add_alcohol"
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
         android:textColor="#FFA500"
+        android:textColorHint="#FFA500"
             android:ems="10"
             android:id="@+id/addalc_ptxt_capacity"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
@@ -61,6 +63,7 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
+        android:textColorHint="#FFA500"
         android:textColor="#FFA500"
             android:id="@+id/addalc_ptxt_content"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
@@ -82,6 +85,7 @@
             android:inputType="numberDecimal"
         android:textColor="#FFA500"
             android:ems="10"
+        android:textColorHint="#FFA500"
             android:id="@+id/addalc_ptxt_price"
             android:layout_gravity="center" android:layout_marginTop="5dp" android:layout_marginBottom="5dp"/>
 

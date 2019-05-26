@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="fill"
+    android:layout_margin="5dp"
     android:background="@drawable/listshape"
     android:clipToPadding="true"
     android:columnCount="3"
@@ -21,6 +22,7 @@
         app:layout_constraintBottom_toTopOf="@+id/weight"
         app:layout_constraintStart_toStartOf="@+id/weight"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#FFA500"
         tools:text="gender" />
 
     <TextView
@@ -34,6 +36,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/quantity"
+        android:textColor="#FFA500"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -44,6 +47,7 @@
         android:text="drinkingtime"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@+id/quantity"
+        android:textColor="#FFA500"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -55,6 +59,7 @@
         android:text="quantity"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#FFA500"
         app:layout_constraintEnd_toStartOf="@+id/date" />
 
     <TextView
@@ -68,6 +73,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#FFA500"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

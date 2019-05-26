@@ -17,7 +17,7 @@ class HistoryAdapter (val items : List<BreathalyserHistory>, val context: Contex
 
         val bhist = items[position]
 
-        holder.gender.text = bhist.gender
+        holder.gender.text = if (bhist.gender == "female") context.getString(R.string.female) else context.getString(R.string.male)
         holder.weight.text = bhist.weight.toString().plus(" kg")
         holder.drinkingtime.text = bhist.drinkingTime.toBigDecimal().setScale(1, RoundingMode.CEILING).toString().plus(" h")
         holder.quantity.text = bhist.quantity.toBigDecimal().setScale(1, RoundingMode.CEILING).toString().plus(" g")

@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import com.miguelcatalan.materialsearchview.MaterialSearchView
+import kotlinx.android.synthetic.main.alcohol_list.*
 import kotlinx.android.synthetic.main.comparator_activity.*
 import kotlinx.android.synthetic.main.comparator_alcohol_item.view.*
 import pl.am2019.alkomaster.R
@@ -110,6 +111,7 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
         val item = menu.findItem(R.id.action_search)
         search_view_comparator.setMenuItem(item)
         search_view_comparator.setSuggestions(suggestions)
+        search_view_comparator.setSuggestionBackground(getDrawable(R.drawable.search_view_suggestion_background))
         search_view_comparator.setOnItemClickListener { adapterView, _, i, _ ->
             search_view_comparator.dismissSuggestions()
             search_view_comparator.closeSearch()

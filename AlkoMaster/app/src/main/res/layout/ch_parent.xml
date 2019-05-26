@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/listshape"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
 
-        android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:background="@drawable/listshape">
 
     <TextView
-            android:text="Test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/chi_parent_txt1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/chi_parent_rclr" android:layout_margin="5dp"/>
+        android:id="@+id/chi_parent_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Test"
+        android:textColor="#FFA500"
+        app:layout_constraintBottom_toTopOf="@+id/chi_parent_rclr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chi_parent_txt1"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/chi_parent_rclr" android:layout_margin="5dp"/>
+        android:id="@+id/chi_parent_rclr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chi_parent_txt1" />
 </android.support.constraint.ConstraintLayout>
