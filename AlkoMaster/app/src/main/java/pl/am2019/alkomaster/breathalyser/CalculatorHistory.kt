@@ -24,7 +24,8 @@ class CalculatorHistory : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
         this.db = db
         Thread{
             val historyList = db.breathalyserHistoryDAO().getAll()
-            history_list.adapter = HistoryAdapter(historyList,this@CalculatorHistory)
+            adapter = HistoryAdapter(historyList,this@CalculatorHistory)
+            history_list.adapter=adapter
             runOnUiThread { adapter.notifyDataSetChanged() }
         }.start()
     }
@@ -35,10 +36,7 @@ class CalculatorHistory : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator_history)
 
-        adapter = HistoryAdapter(bhist, this)
-        history_list.adapter = adapter
         history_list.layoutManager = LinearLayoutManager(this)
-
 
         val open = OpenDatabase(this)
         open.setOpenDatabaseListener(this)
@@ -46,5 +44,9 @@ class CalculatorHistory : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
 
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
 }
