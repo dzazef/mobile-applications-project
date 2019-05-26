@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_calculator_history.*
 import pl.am2019.alkomaster.R
+import pl.am2019.alkomaster.activities.DatabaseNotFoundDialogFragment
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.breathalyser_history.BreathalyserHistory
@@ -16,7 +17,14 @@ class CalculatorHistory : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
     private lateinit var adapter: HistoryAdapter
 
     override fun onDatabaseFail() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+    }
+
+    override fun onDestroy() {
+        if (db != null) {
+            db!!.close()
+        }
+        super.onDestroy()
     }
 
     override fun onDatabaseReady(db: AppDatabase) {

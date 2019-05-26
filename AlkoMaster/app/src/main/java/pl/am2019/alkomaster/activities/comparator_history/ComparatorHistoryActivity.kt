@@ -13,8 +13,10 @@ import pl.am2019.alkomaster.db.comparator_history.ComparatorHistory
 
 class ComparatorHistoryActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     private lateinit var adapter : ParentAdapter
+    private var db : AppDatabase? = null
 
     override fun onDatabaseReady(db: AppDatabase) {
+        this.db = db
         runOnUiThread { ch_txt_info.visibility = View.GONE }
         val list: MutableList<Pair<ComparatorHistory, List<Alcohol>>> = mutableListOf()
         val historyList = db.comparatorHistoryDAO().getAll()
@@ -30,6 +32,12 @@ class ComparatorHistoryActivity : AppCompatActivity(), OpenDatabase.OpenDatabase
         runOnUiThread { ch_txt_info.text = getString(R.string.database_load_error) }
     }
 
+    override fun onDestroy() {
+        if (db != null) {
+            db!!.close()
+        }
+        super.onDestroy()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

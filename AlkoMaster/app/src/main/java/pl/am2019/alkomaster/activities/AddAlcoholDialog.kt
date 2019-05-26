@@ -1,23 +1,41 @@
 package pl.am2019.alkomaster.activities
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.View
 import android.view.Window
 import kotlinx.android.synthetic.main.add_alcohol_dialog.*
 import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.AppDatabase
+import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 
-class AddAlcoholDialog(context : Context, private val db : AppDatabase) : Dialog(context), View.OnClickListener {
+class AddAlcoholDialog(context : Activity) : Dialog(context), View.OnClickListener, OpenDatabase.OpenDatabaseListener {
+
+    private var db : AppDatabase? = null
+
+    override fun onDatabaseReady(db: AppDatabase) {
+        this.db = db
+    }
+
+    override fun onDatabaseFail() {
+        showDialog()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.add_alcohol_dialog)
         addalc_btn_add.setOnClickListener(this)
+        OpenDatabase(context).also {
+            it.setOpenDatabaseListener(this)
+            it.load()
+        }
     }
 
 
@@ -57,18 +75,38 @@ class AddAlcoholDialog(context : Context, private val db : AppDatabase) : Dialog
 
         if (r) return
 
-        Thread {
-            db.alcoholDAO().insertAll(
-                Alcohol(
-                    name = addalc_ptxt_name.text.toString(),
-                    capacity = capacity!!,
-                    content = content!!,
-                    price = price!!
+        if (db != null) {
+            Thread {
+                db!!.alcoholDAO().insertAll(
+                    Alcohol(
+                        name = addalc_ptxt_name.text.toString(),
+                        capacity = capacity!!,
+                        content = content!!,
+                        price = price!!
+                    )
                 )
-            )
-            Log.i("DEBUG_INFO", db.alcoholDAO().getAll().toString())
-        }.start()
+                Log.i("DEBUG_INFO", db!!.alcoholDAO().getAll().toString())
+                db!!.close()
+            }.start()
+            dismiss()
+        } else {
+            showDialog()
+        }
+    }
 
-        dismiss()
+    private fun showDialog() {
+        val activity = getActivity(context)
+        if (activity != null) {
+            DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+        }
+    }
+
+    private fun getActivity(context : Context): Activity? {
+        if (context is Activity) {
+            return context
+        } else if (context is ContextThemeWrapper) {
+            return getActivity(context.baseContext)
+        }
+        return null
     }
 }

@@ -2,9 +2,11 @@ package pl.am2019.alkomaster.activities
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.Window
 import kotlinx.android.synthetic.main.edit_alcohol_dialog.*
 import pl.am2019.alkomaster.R
@@ -24,7 +26,7 @@ class EditAlcoholDialog(
     }
 
     override fun onDatabaseFail() {
-        DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+        showDialog()
     }
 
     private var db : AppDatabase? = null
@@ -60,10 +62,11 @@ class EditAlcoholDialog(
 
     private fun onDeleteClick() {
         if (db == null) {
-            DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+            showDialog()
         } else {
             Thread{
                 db!!.alcoholDAO().delete(alcohol)
+                db!!.close()
             }.start()
             callback.onAlcoholEditedCallback(alcohol, null, ITEM_DELETED, position)
             dismiss()
@@ -116,18 +119,40 @@ class EditAlcoholDialog(
 
         if (newAlcohol == alcohol) {
             callback.onAlcoholEditedCallback(alcohol, alcohol, ITEM_UNCHANGED, position)
+            Thread {
+                if (db != null) {
+                    db!!.close()
+                }
+            }.start()
             dismiss()
         } else {
             if (db == null) {
-                DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+                showDialog()
             } else {
                 Thread {
                     db!!.alcoholDAO().update(name = newAlcohol.name, capacity = newAlcohol.capacity, content = newAlcohol.content, price = newAlcohol.price, id = newAlcohol.id)
+                    db!!.close()
                 }.start()
                 callback.onAlcoholEditedCallback(alcohol, newAlcohol, ITEM_EDITED, position)
                 dismiss()
             }
         }
+    }
 
+
+    private fun showDialog() {
+        val activity = getActivity(context)
+        if (activity != null) {
+            DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+        }
+    }
+
+    private fun getActivity(context : Context): Activity? {
+        if (context is Activity) {
+            return context
+        } else if (context is ContextThemeWrapper) {
+            return getActivity(context.baseContext)
+        }
+        return null
     }
 }

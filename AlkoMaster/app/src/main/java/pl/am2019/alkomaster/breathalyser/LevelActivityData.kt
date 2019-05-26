@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -24,9 +25,8 @@ import java.util.*
 /**
  * aktywnosc umozliwia wprowadzenie podstawowych danych (plec, waga i czas) potrzebnych do obliczenia poziomu alkoholu we krwi
  */
-class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
+class LevelActivityData : AppCompatActivity() {
     private var type : String? = "female" //domyslnie female
-    private var db: AppDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +47,6 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
             }
         }
 
-        //przygotowanie bazy
-        val open = OpenDatabase(this)
-        open.setOpenDatabaseListener(this)
-        open.load()
-
         //ustawienie godziny rozpoczecia i konca na aktualna godzine
         val dateFormat = SimpleDateFormat("HH:mm", Locale.ENGLISH)
         val cal = Calendar.getInstance()
@@ -71,13 +66,6 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
         }
     }
 
-    override fun onDatabaseReady(db: AppDatabase) {
-        this.db = db
-    }
-
-    override fun onDatabaseFail() {
-        DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.breathalyser_menu_item, menu)
@@ -88,13 +76,8 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             R.id.action_add -> {
-                if (db != null) {
-                    val dialog = AddAlcoholDialog(this, db!!)
-                    dialog.show()
-                    return true
-                } else {
-                    DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
-                }
+                val dialog = AddAlcoholDialog(this)
+                dialog.show()
             }
             R.id.action_history -> {
                 //rozpoczac aktywnosc historii

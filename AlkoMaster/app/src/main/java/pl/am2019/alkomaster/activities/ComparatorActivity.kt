@@ -38,6 +38,12 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
     private var alcoholList: MutableList<Alcohol>? =
         null //lista alkoholi, ktora pozniej przechowuje wszystkie alkohole z bazy
 
+    override fun onDestroy() {
+        if (db != null) {
+            db!!.close()
+        }
+        super.onDestroy()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,12 +152,8 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
     }
 
     fun onAddNewProductClick(@Suppress("UNUSED_PARAMETER") v: View) {
-        if (db != null) {
-            val dialog = AddAlcoholDialog(this, db!!)
-            dialog.show()
-        } else {
-            DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
-        }
+        val dialog = AddAlcoholDialog(this)
+        dialog.show()
     }
 
     fun onCompareClick(@Suppress("UNUSED_PARAMETER") v: View) {

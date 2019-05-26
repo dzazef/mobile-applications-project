@@ -19,7 +19,14 @@ class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener,
         Log.i("alkomasterINFO1", old.toString() + result)
     }
 
-    private lateinit var db : AppDatabase
+    private var db : AppDatabase? = null
+
+    override fun onDestroy() {
+        if (db != null) {
+            db!!.close()
+        }
+        super.onDestroy()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

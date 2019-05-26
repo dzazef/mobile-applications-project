@@ -28,6 +28,13 @@ class Results : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     private var breathalyser: Breathalyser? = null
     private var end: String? = null //godzina konca picia
 
+    override fun onDestroy() {
+        if (db != null) {
+            db!!.close()
+        }
+        super.onDestroy()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.results_activity)
@@ -110,13 +117,9 @@ class Results : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             R.id.action_add -> {
-                if (db != null) {
-                    val dialog = AddAlcoholDialog(this, db!!)
-                    dialog.show()
-                    return true
-                } else {
-                    DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
-                }
+                val dialog = AddAlcoholDialog(this)
+                dialog.show()
+                return true
             }
             R.id.action_history -> {
                 //rozpoczac aktywnosc historii

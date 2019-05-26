@@ -26,6 +26,7 @@ import pl.am2019.alkomaster.db.alcohol.Alcohol
  */
 class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     override fun onDatabaseFail() {
+        DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
     }
 
     private var db: AppDatabase? = null
@@ -39,6 +40,13 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     private var start : String = "" //poczatek picia
     private var end : String = "" //koniec picia
     private var type : String = "" //plec
+
+    override fun onDestroy() {
+        if (db != null) {
+            db!!.close()
+        }
+        super.onDestroy()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,13 +137,9 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             R.id.action_add -> {
-                if (db != null) {
-                    val dialog = AddAlcoholDialog(this, db!!)
-                    dialog.show()
-                    return true
-                } else {
-                    DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
-                }
+                val dialog = AddAlcoholDialog(this)
+                dialog.show()
+                return true
             }
             R.id.action_history -> {
                 //rozpoczac aktywnosc historii
