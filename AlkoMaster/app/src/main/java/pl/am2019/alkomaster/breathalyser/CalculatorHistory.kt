@@ -35,7 +35,7 @@ class CalculatorHistory : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator_history)
 
-        history_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        history_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
 
         val open = OpenDatabase(this)
