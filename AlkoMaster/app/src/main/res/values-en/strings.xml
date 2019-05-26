@@ -12,7 +12,7 @@
     <string name="breathalyser_button">Breathalyser</string>
     <string name="alcohol_blood_content_textView">Max alcohol level: %.2f‰</string>
     <string name="alcohol_amount_textView">Pure alcohol consumed: %1$d ml</string>
-    <string name="breathalyser_description">Results presented above may be inaccurate. To acquire precise results use real breathalyser avaliable at every police station.</string>
+    <string name="breathalyser_description">Results presented above may be inaccurate. To acquire precise results use real breathalyser available at every police station.</string>
     <string name="database_load_error" translatable="false">Error while loading database</string>
     <string name="date_time_comparator_history">Date: %1$s</string>
     <string name="delete_edit_alcohol">Delete</string>

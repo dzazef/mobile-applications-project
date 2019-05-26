@@ -89,7 +89,7 @@ class Breathalyser(val weight: Int, val sex: String, private val start: String) 
             numberOfMinutes = (endHours * 60 + endMinutes) - (startHours * 60 + startMinutes)
         } else {
             if(endHours < startHours) {
-                numberOfMinutes = (endHours * 60 + endMinutes) + (startHours * 60 + startMinutes)
+                numberOfMinutes = (endHours * 60 + endMinutes) + ((24-startHours) * 60 + startMinutes)
             } else {
                 if(endHours == startHours) {
                     if(endMinutes >= startMinutes) {
