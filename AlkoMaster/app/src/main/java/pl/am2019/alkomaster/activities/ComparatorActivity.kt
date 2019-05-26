@@ -9,12 +9,14 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import com.miguelcatalan.materialsearchview.MaterialSearchView
-import kotlinx.android.synthetic.main.alkohol_item.view.*
 import kotlinx.android.synthetic.main.comparator_activity.*
+import kotlinx.android.synthetic.main.comparator_alcohol_item.view.*
 import pl.am2019.alkomaster.R
+import pl.am2019.alkomaster.activities.comparator_history.ComparatorHistoryActivity
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
@@ -29,9 +31,10 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
 
     private var db: AppDatabase? = null
     var alks = ArrayList<Alcohol>() //do adpatera recycler view
-    private lateinit var myadapter: MyAdapter
-    private var suggestions: Array<String> = Array(2000) {""}
-    private var alcoholList: List<Alcohol>? = null //lista alkoholi, ktora pozniej przechowuje wszystkie alkohole z bazy
+    private lateinit var myadapter: ComparatorAdapter
+    private var suggestions: Array<String> = Array(2000) { "" }
+    private var alcoholList: MutableList<Alcohol>? =
+        null //lista alkoholi, ktora pozniej przechowuje wszystkie alkohole z bazy
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +46,9 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
         open.setOpenDatabaseListener(this)
         open.load()
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             alks = savedInstanceState.getParcelableArrayList("added_alcohols")!!
-            myadapter = MyAdapter(this, alks)
+            myadapter = ComparatorAdapter(this, alks)
             //recyclerView_comparator.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
             //recyclerView_comparator.adapter = adapter
             //recyclerView_comparator.setHasFixedSize(true)
@@ -61,7 +64,7 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
             //recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
             //  recyclerView.setOnSwipeToDelete()
 
-            myadapter = MyAdapter(this, alks)
+            myadapter = ComparatorAdapter(this, alks)
 
             recyclerView_comparator.apply {
                 adapter = myadapter
@@ -87,11 +90,18 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.comparator_menu_item, menu)
 
+        //Otwarcie historii
+        val historyButton = menu.findItem(R.id.action_history)
+        historyButton.setOnMenuItemClickListener {
+            val intent = Intent(this, ComparatorHistoryActivity::class.java)
+            startActivity(intent)
+            true
+        }
+
+        //Obsługa wyszukiwarki
         val item = menu.findItem(R.id.action_search)
         search_view_comparator.setMenuItem(item)
-
         search_view_comparator.setSuggestions(suggestions)
-
         search_view_comparator.setOnItemClickListener { adapterView, _, i, _ ->
             search_view_comparator.dismissSuggestions()
             search_view_comparator.closeSearch()
@@ -118,23 +128,20 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-
-
     private fun RecyclerView.setOnSwipeToDelete() {
-           val swipeCallBack = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-               override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
-                   return false
-               }
-               override fun onSwiped(vh: RecyclerView.ViewHolder, dir: Int) {
-                   val pos = vh.adapterPosition
-                   alks.removeAt(pos)
-                   adapter!!.notifyDataSetChanged()
-              }
-           }
-           ItemTouchHelper(swipeCallBack).attachToRecyclerView(this)
-       }
+        val swipeCallBack = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
 
-
+            override fun onSwiped(vh: RecyclerView.ViewHolder, dir: Int) {
+                val pos = vh.adapterPosition
+                alks.removeAt(pos)
+                adapter!!.notifyDataSetChanged()
+            }
+        }
+        ItemTouchHelper(swipeCallBack).attachToRecyclerView(this)
+    }
 
     fun onAddNewProductClick(@Suppress("UNUSED_PARAMETER") v: View) {
         if (db != null) {
@@ -145,9 +152,8 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
         }
     }
 
-
     fun onCompareClick(@Suppress("UNUSED_PARAMETER") v: View) {
-        val adapter = recyclerView_comparator.adapter as MyAdapter// fetching adapter
+        val adapter = recyclerView_comparator.adapter as ComparatorAdapter// fetching adapter
         Collections.sort(adapter.getItems(), object : Comparator<Alcohol> {
             override fun compare(c1: Alcohol, c2: Alcohol): Int {
                 // wzor: content / 100 * capacity / price
@@ -167,15 +173,13 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
 
         val size = alcoholList!!.size
         for (i in 0 until size) {
-            suggestions[i] = "${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml"
+            suggestions[i] = getSuggestion(alcoholList!![i])
         }
     }
 
-
-
     //bylo zakomentowane, nie wiem, czy dziala
     fun onDeleteAllClick(@Suppress("UNUSED_PARAMETER") v: View) {
-       val result = StringBuilder()
+        val result = StringBuilder()
         for (i in alks.size - 1 downTo 0) {
             if (recyclerView_comparator.getChildAt(i).checkBox.isChecked) {
                 alks.removeAt(i)
@@ -185,7 +189,28 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
         myadapter.notifyDataSetChanged()
     }
 
+    fun getSuggestion(alcohol: Alcohol): String = "${alcohol.name}  ${alcohol.capacity} ml"
 
+    fun changeSuggestion(old: String, new: String) {
+        val idx = suggestions.indexOf(old)
+        if (idx != -1) {
+            suggestions[idx] = new
+        } else {
+            Log.e("alkomaster/ERROR", "${this::class.java}: Couldn't change suggestion from: $old to: $new")
+        }
+    }
+
+    fun changeList(old: Alcohol, new: Alcohol?) {
+        if (alcoholList == null) {
+            DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+        } else {
+            if (new == null) {
+                alcoholList!!.remove(old)
+            } else {
+                alcoholList!![alcoholList!!.indexOf(old)] = new
+            }
+        }
+    }
     /*
     /**
      * dupa jasiu karuzela, nie działa
@@ -201,7 +226,7 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
 
                     runOnUiThread {
 
-                        recyclerView.adapter = MyAdapter(this@ComparatorActivity, itemsList)
+                        recyclerView.adapter = ComparatorAdapter(this@ComparatorActivity, itemsList)
                         adapter.notifyDataSetChanged()
                     }
                 }.start()

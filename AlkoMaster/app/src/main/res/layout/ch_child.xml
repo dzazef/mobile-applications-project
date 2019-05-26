@@ -4,7 +4,7 @@
 
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:id="@+id/root_alcohol_item"
+             android:id="@+id/c_root_alcohol_item"
              android:orientation="horizontal"
              android:background="@drawable/listshape"
              android:layout_marginRight="10dp" android:layout_marginLeft="10dp"

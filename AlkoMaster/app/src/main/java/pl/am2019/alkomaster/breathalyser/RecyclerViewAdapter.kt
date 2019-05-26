@@ -40,7 +40,7 @@ class RecyclerViewAdapter(private val dataset: ArrayList<AlcoholData>, val activ
         private val buttonPlus: ImageButton = view.findViewById(R.id.plus_button)
         private val buttonMinus: ImageButton = view.findViewById(R.id.minus_button)
         private val buttonX: ImageButton =  view.findViewById(R.id.x_button)
-        private val layout: ConstraintLayout = view.findViewById(R.id.root_alcohol_item)
+        private val layout: ConstraintLayout = view.findViewById(R.id.b_root_alcohol_item)
 
         init {
             view.setOnClickListener(this)
@@ -80,7 +80,7 @@ class RecyclerViewAdapter(private val dataset: ArrayList<AlcoholData>, val activ
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapter.MyViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.alcohol_item, parent, false)
+            .inflate(R.layout.breathalyser_alcohol_item, parent, false)
 
         return MyViewHolder(view)
     }
