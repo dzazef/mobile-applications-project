@@ -1,7 +1,9 @@
 package pl.am2019.alkomaster.breathalyser
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -19,7 +21,6 @@ import pl.am2019.alkomaster.db.OpenDatabase
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 /**
  * aktywnosc umozliwia wprowadzenie podstawowych danych (plec, waga i czas) potrzebnych do obliczenia poziomu alkoholu we krwi
  */
@@ -31,6 +32,20 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.alcohol_level_activity)
         actionBar?.hide()
+
+        val sharedPref : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        (linearLayout_weight.editText_waga).setText(sharedPref.getInt("weight", 0).toString())
+        type = sharedPref.getString("sex", "female")
+        if(type!=null) {
+            when(type) {
+                "male" -> {
+                    radioButton_male.isChecked = true
+                }
+                "female" -> {
+                    radioButton_female.isChecked = true
+                }
+            }
+        }
 
         //przygotowanie bazy
         val open = OpenDatabase(this)
@@ -131,6 +146,12 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
             val weight: Int = (linearLayout_weight.editText_waga).text.toString().toInt()
             val start: String = (linearLayout2.linearLayout_poczatek.textClock_poczatek).text.toString()
             val end: String = (linearLayout2.linearLayout_koniec.textClock_koniec).text.toString()
+
+            val sharedPref : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            val editor : SharedPreferences.Editor = sharedPref.edit()
+            editor.putInt("weight", weight)
+            editor.putString("sex", type)
+            editor.apply()
 
             val myIntent = Intent(this, AlcoholLevelAlcohols::class.java)
             myIntent.putExtra("type", type)
