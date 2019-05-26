@@ -1,5 +1,6 @@
 package pl.am2019.alkomaster.activities.comparator_history
 
+import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,7 +15,7 @@ import pl.am2019.alkomaster.db.comparator_history.ComparatorHistory
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ParentAdapter(list : MutableList<Pair<ComparatorHistory, List<Alcohol>>>) : RecyclerView.Adapter<ParentAdapter.ViewHolder>() {
+class ParentAdapter(list : MutableList<Pair<ComparatorHistory, List<Alcohol>>>, val context: Context) : RecyclerView.Adapter<ParentAdapter.ViewHolder>() {
 
     private val itemList : MutableList<Pair<ComparatorHistory, List<Alcohol>>> = list
     private val viewPool = RecyclerView.RecycledViewPool()
@@ -35,7 +36,7 @@ class ParentAdapter(list : MutableList<Pair<ComparatorHistory, List<Alcohol>>>) 
 
         holder.recyclerView.apply {
             layoutManager = childLayoutManager
-            adapter = ChildAdapter(item.second)
+            adapter = ChildAdapter(item.second, context)
             setRecycledViewPool(viewPool)
         }
     }
