@@ -7,7 +7,7 @@ import android.arch.persistence.room.Query
 @Dao
 interface BreathalyserHistoryDAO {
 
-    @Query("select * from breathalyser_history")
+    @Query("select * from breathalyser_history order by date_time desc")
     fun getAll() : List<BreathalyserHistory>
 
     @Insert

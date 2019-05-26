@@ -9,7 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".activities.comparator_history.ComparatorHistoryActivity">
+        <activity android:name=".activities.comparator_history.ComparatorHistoryActivity" android:parentActivityName=".activities.ComparatorActivity">
         </activity>
         <activity android:name=".activities.MainActivity">
             <intent-filter>
@@ -19,13 +19,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".breathalyser.LevelActivityData">
+        <activity android:name=".breathalyser.LevelActivityData" android:parentActivityName=".activities.MainActivity" >
     </activity>
 
-        <activity android:name=".breathalyser.AlcoholLevelAlcohols">
+        <activity android:name=".breathalyser.AlcoholLevelAlcohols" android:parentActivityName=".breathalyser.LevelActivityData">
         </activity>
 
-        <activity android:name=".breathalyser.Results">
+        <activity android:name=".breathalyser.Results" android:parentActivityName=".breathalyser.LevelActivityData">
         </activity>
         <activity android:name=".activities.ComparatorActivity" android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".breathalyser.CalculatorHistory" />
