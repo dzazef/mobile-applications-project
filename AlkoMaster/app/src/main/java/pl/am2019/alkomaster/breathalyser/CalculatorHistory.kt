@@ -23,9 +23,12 @@ class CalculatorHistory : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
         this.db = db
         Thread{
             val historyList = db.breathalyserHistoryDAO().getAll()
-            adapter = HistoryAdapter(historyList,this@CalculatorHistory)
-            history_list.adapter=adapter
-            runOnUiThread { adapter.notifyDataSetChanged() }
+            //adapter = HistoryAdapter(historyList,this@CalculatorHistory)
+            //history_list.adapter=adapter
+            runOnUiThread {
+                adapter = HistoryAdapter(historyList,this@CalculatorHistory)
+                history_list.adapter=adapter
+                adapter.notifyDataSetChanged() }
         }.start()
     }
 
