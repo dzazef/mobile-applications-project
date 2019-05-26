@@ -3,7 +3,6 @@ package pl.am2019.alkomaster.breathalyser
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_calculator_history.*
 import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.AppDatabase
