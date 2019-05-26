@@ -15,21 +15,19 @@ class ComparatorHistoryActivity : AppCompatActivity(), OpenDatabase.OpenDatabase
     private lateinit var adapter : ParentAdapter
 
     override fun onDatabaseReady(db: AppDatabase) {
-        ch_txt_info.visibility = View.GONE
-        Thread{
-            val list : MutableList<Pair<ComparatorHistory, List<Alcohol>>> = mutableListOf()
-            val historyList = db.comparatorHistoryDAO().getAll()
-            for (history in historyList) {
-                val alcoholList = db.comparatorAlcoholDAO().getAlcoholById(history.id)
-                list.add(Pair(history, alcoholList))
-            }
-            adapter.addAllItem(list)
-            runOnUiThread { adapter.notifyDataSetChanged() }
-        }.start()
+        runOnUiThread { ch_txt_info.visibility = View.GONE }
+        val list: MutableList<Pair<ComparatorHistory, List<Alcohol>>> = mutableListOf()
+        val historyList = db.comparatorHistoryDAO().getAll()
+        for (history in historyList) {
+            val alcoholList = db.comparatorAlcoholDAO().getAlcoholById(history.id)
+            list.add(Pair(history, alcoholList))
+        }
+        adapter.addAllItem(list)
+        runOnUiThread { adapter.notifyDataSetChanged() }
     }
 
     override fun onDatabaseFail() {
-        ch_txt_info.text = "Failed to read database!"
+        runOnUiThread { ch_txt_info.text = "Failed to read database!" }
     }
 
 

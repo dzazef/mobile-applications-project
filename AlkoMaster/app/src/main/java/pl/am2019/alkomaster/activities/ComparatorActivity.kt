@@ -20,6 +20,8 @@ import pl.am2019.alkomaster.activities.comparator_history.ComparatorHistoryActiv
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
+import pl.am2019.alkomaster.db.comparator_history.ComparatorAlcohol
+import pl.am2019.alkomaster.db.comparator_history.ComparatorHistory
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -163,6 +165,21 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
             }
         })
         adapter.notifyDataSetChanged()
+        addComparisionToHistory()
+    }
+
+    private fun addComparisionToHistory() {
+        if (db == null) {
+            DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+        } else {
+            Thread {
+                val comparatorHistory = ComparatorHistory(dateTime = Calendar.getInstance().time)
+                val id = db!!.comparatorHistoryDAO().insertAll(comparatorHistory).first()
+                myadapter.getItems().forEach{ alcohol ->
+                    db!!.comparatorAlcoholDAO().insertAll(ComparatorAlcohol(comparatorId = id, alcoholId = alcohol.id))
+                }
+            }.start()
+        }
     }
 
 

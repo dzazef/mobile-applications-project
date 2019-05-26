@@ -9,4 +9,11 @@
         android:title="@string/wyszukaj_alkohol"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_history"
+        android:icon="@drawable/ic_baseline_history_24px"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="@string/wyswietl_historie" />
+
 </menu>
