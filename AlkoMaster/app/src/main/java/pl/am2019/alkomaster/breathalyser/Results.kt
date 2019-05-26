@@ -1,5 +1,6 @@
 package pl.am2019.alkomaster.breathalyser
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -119,6 +120,8 @@ class Results : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
             }
             R.id.action_history -> {
                 //rozpoczac aktywnosc historii
+                val myIntent = Intent(this, CalculatorHistory::class.java)
+                startActivity(myIntent)
             }
         }
 

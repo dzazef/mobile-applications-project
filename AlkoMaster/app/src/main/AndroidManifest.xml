@@ -28,6 +28,7 @@
         <activity android:name=".breathalyser.Results">
         </activity>
         <activity android:name=".activities.ComparatorActivity" android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".breathalyser.CalculatorHistory" />
 
     </application>
 

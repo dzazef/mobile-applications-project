@@ -83,6 +83,8 @@ class LevelActivityData : AppCompatActivity(), OpenDatabase.OpenDatabaseListener
             }
             R.id.action_history -> {
                 //rozpoczac aktywnosc historii
+                val myIntent = Intent(this, CalculatorHistory::class.java)
+                startActivity(myIntent)
             }
         }
 

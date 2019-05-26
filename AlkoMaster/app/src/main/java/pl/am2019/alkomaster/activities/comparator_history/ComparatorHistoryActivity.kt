@@ -41,7 +41,7 @@ class ComparatorHistoryActivity : AppCompatActivity(), OpenDatabase.OpenDatabase
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         //Set up RecyclerView
-        adapter = ParentAdapter(mutableListOf())
+        adapter = ParentAdapter(mutableListOf(), this)
         ch_rclr.adapter = adapter
         ch_rclr.layoutManager = LinearLayoutManager(this)
 
