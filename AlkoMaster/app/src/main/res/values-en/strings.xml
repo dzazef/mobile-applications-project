@@ -38,8 +38,8 @@
     <string name="return_dialog">Return</string>
     <string name="sober_after">Sober after</string>
     <string name="szukaj">Find alcohol</string>
-    <string name="textView_koniec">Begin time</string>
-    <string name="textView_poczatek">End time</string>
+    <string name="textView_koniec">End time</string>
+    <string name="textView_poczatek">Begin time</string>
     <string name="textView_waga">Weight:</string>
     <string name="wait_for_database">Please wait, your data is being loaded…</string>
     <string name="wyswietl_historie">show_history</string>
