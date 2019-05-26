@@ -137,7 +137,7 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             R.id.action_add -> {
-                val dialog = AddAlcoholDialog(this)
+                val dialog = AddAlcoholDialog(this, myAdapter)
                 dialog.show()
                 return true
             }
@@ -197,6 +197,24 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
             } else {
                 alcoholList!![alcoholList!!.indexOf(old)] = new
             }
+        }
+    }
+
+
+    fun addSuggestion(new : String) {
+        val idx = suggestions.indexOf("")
+        if (idx != -1) {
+            suggestions[idx] = new
+        } else {
+            Log.e("alkomaster/ERROR", "${this::class.java}: Couldn't create suggestion: $new")
+        }
+    }
+
+    fun addItemToList(new : Alcohol) {
+        if (alcoholList == null) {
+            DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+        } else {
+            alcoholList!!.add(new)
         }
     }
 }

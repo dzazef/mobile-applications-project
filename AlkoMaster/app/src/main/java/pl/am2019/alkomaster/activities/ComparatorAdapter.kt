@@ -11,7 +11,13 @@ import pl.am2019.alkomaster.db.alcohol.Alcohol
 
 
 class ComparatorAdapter(private val activity: ComparatorActivity, private val alcohols: MutableList<Alcohol>) : RecyclerView.Adapter<ComparatorAdapter.MyViewHolder>(),
-    EditAlcoholDialog.EditAlcoholDialogCallback {
+    EditAlcoholDialog.EditAlcoholDialogCallback, AddAlcoholDialog.AddAlcoholDialogCallback {
+
+    override fun onAlcoholAdded(new: Alcohol) {
+        activity.addSuggestion(activity.getSuggestion(new))
+        activity.addItemToList(new)
+    }
+
     override fun onAlcoholEditedCallback(old: Alcohol, new: Alcohol?, result: Int, position: Int?) {
         when(result) {
             EditAlcoholDialog.ITEM_UNCHANGED -> Unit

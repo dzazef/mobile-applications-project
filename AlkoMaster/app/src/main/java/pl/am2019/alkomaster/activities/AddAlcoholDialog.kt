@@ -15,7 +15,11 @@ import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 
-class AddAlcoholDialog(context : Activity) : Dialog(context), View.OnClickListener, OpenDatabase.OpenDatabaseListener {
+class AddAlcoholDialog(context : Activity, private val callback : AddAlcoholDialogCallback?) : Dialog(context), View.OnClickListener, OpenDatabase.OpenDatabaseListener {
+
+    interface AddAlcoholDialogCallback {
+        fun onAlcoholAdded(new : Alcohol)
+    }
 
     private var db : AppDatabase? = null
 
@@ -76,18 +80,18 @@ class AddAlcoholDialog(context : Activity) : Dialog(context), View.OnClickListen
         if (r) return
 
         if (db != null) {
+            val newAlcohol = Alcohol(
+                name = addalc_ptxt_name.text.toString(),
+                capacity = capacity!!,
+                content = content!!,
+                price = price!!
+            )
             Thread {
-                db!!.alcoholDAO().insertAll(
-                    Alcohol(
-                        name = addalc_ptxt_name.text.toString(),
-                        capacity = capacity!!,
-                        content = content!!,
-                        price = price!!
-                    )
-                )
+                db!!.alcoholDAO().insertAll(newAlcohol)
                 Log.i("DEBUG_INFO", db!!.alcoholDAO().getAll().toString())
                 db!!.close()
             }.start()
+            callback?.onAlcoholAdded(newAlcohol)
             dismiss()
         } else {
             showDialog()

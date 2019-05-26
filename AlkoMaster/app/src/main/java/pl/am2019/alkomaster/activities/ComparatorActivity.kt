@@ -28,7 +28,7 @@ import kotlin.collections.ArrayList
 
 class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
     override fun onDatabaseFail() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
     }
 
     private var db: AppDatabase? = null
@@ -152,7 +152,7 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
     }
 
     fun onAddNewProductClick(@Suppress("UNUSED_PARAMETER") v: View) {
-        val dialog = AddAlcoholDialog(this)
+        val dialog = AddAlcoholDialog(context = this, callback = myadapter)
         dialog.show()
     }
 
@@ -230,32 +230,22 @@ class ComparatorActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListene
             }
         }
     }
-    /*
-    /**
-     * dupa jasiu karuzela, nie działa
-     */
-    fun Search() {
 
-        editText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, ount: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                Thread {
-
-                    var itemsList = db?.alcoholDAO()!!.getByName(s.toString() + "%")
-
-                    runOnUiThread {
-
-                        recyclerView.adapter = ComparatorAdapter(this@ComparatorActivity, itemsList)
-                        adapter.notifyDataSetChanged()
-                    }
-                }.start()
-            }
-
-            override fun afterTextChanged(s: Editable) {
-
-            }
-        })
+    fun addSuggestion(new : String) {
+        val idx = suggestions.indexOf("")
+        if (idx != -1) {
+            suggestions[idx] = new
+        } else {
+            Log.e("alkomaster/ERROR", "${this::class.java}: Couldn't create suggestion: $new")
+        }
     }
-    */
+
+    fun addItemToList(new : Alcohol) {
+        if (alcoholList == null) {
+            DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+        } else {
+            alcoholList!!.add(new)
+        }
+    }
 }
 

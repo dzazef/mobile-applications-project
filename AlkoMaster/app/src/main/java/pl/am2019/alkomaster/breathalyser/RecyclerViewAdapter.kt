@@ -9,11 +9,18 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import pl.am2019.alkomaster.R
+import pl.am2019.alkomaster.activities.AddAlcoholDialog
 import pl.am2019.alkomaster.activities.EditAlcoholDialog
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 
 class RecyclerViewAdapter(private val dataset: ArrayList<AlcoholData>, val activity: AlcoholLevelAlcohols) :
-    RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>(), EditAlcoholDialog.EditAlcoholDialogCallback {
+    RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>(), EditAlcoholDialog.EditAlcoholDialogCallback,
+    AddAlcoholDialog.AddAlcoholDialogCallback
+{
+    override fun onAlcoholAdded(new: Alcohol) {
+        activity.addSuggestion(activity.getSuggestion(new))
+        activity.addItemToList(new)
+    }
 
     //taka se funkcja wywyoływana gdy dialog zwróci wynik
     override fun onAlcoholEditedCallback(old: Alcohol, new: Alcohol?, result: Int, position: Int?) {

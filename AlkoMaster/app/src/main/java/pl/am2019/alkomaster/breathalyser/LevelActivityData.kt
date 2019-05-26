@@ -76,7 +76,7 @@ class LevelActivityData : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
             R.id.action_add -> {
-                val dialog = AddAlcoholDialog(this)
+                val dialog = AddAlcoholDialog(this, null)
                 dialog.show()
             }
             R.id.action_history -> {
