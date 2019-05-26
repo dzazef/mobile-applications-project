@@ -1,7 +1,7 @@
 package pl.am2019.alkomaster.activities
 
-import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,7 +11,7 @@ import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 
-class AddAlcoholDialog(a : Activity, private val db : AppDatabase) : Dialog(a), View.OnClickListener {
+class AddAlcoholDialog(context : Context, private val db : AppDatabase) : Dialog(context), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

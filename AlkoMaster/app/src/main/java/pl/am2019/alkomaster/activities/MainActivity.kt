@@ -11,8 +11,14 @@ import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.breathalyser.LevelActivityData
 import pl.am2019.alkomaster.db.AppDatabase
 import pl.am2019.alkomaster.db.OpenDatabase
+import pl.am2019.alkomaster.db.alcohol.Alcohol
 
-class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener {
+class MainActivity : AppCompatActivity(), OpenDatabase.OpenDatabaseListener,
+    EditAlcoholDialog.EditAlcoholDialogCallback {
+    override fun onAlcoholEditedCallback(old: Alcohol, new: Alcohol?, result: Int, position: Int?) {
+        Log.i("alkomasterINFO1", old.toString() + result)
+    }
+
     private lateinit var db : AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {

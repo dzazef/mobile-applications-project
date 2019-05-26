@@ -3,14 +3,31 @@ package pl.am2019.alkomaster.activities
 import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.view.Window
 import kotlinx.android.synthetic.main.edit_alcohol_dialog.*
 import pl.am2019.alkomaster.R
 import pl.am2019.alkomaster.db.AppDatabase
+import pl.am2019.alkomaster.db.OpenDatabase
 import pl.am2019.alkomaster.db.alcohol.Alcohol
 
-class EditAlcoholDialog(private val callback : EditAlcoholDialogCallback, private val alcohol : Alcohol, activity : Activity, private val db : AppDatabase) : Dialog(activity){
+class EditAlcoholDialog(
+    private val callback: EditAlcoholDialogCallback,
+    private val alcohol: Alcohol,
+    private val activity: Activity,
+    private val position: Int?
+) : Dialog(activity),
+    OpenDatabase.OpenDatabaseListener {
+    override fun onDatabaseReady(db: AppDatabase) {
+        this.db = db
+    }
+
+    override fun onDatabaseFail() {
+        DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+    }
+
+    private var db : AppDatabase? = null
 
     companion object {
         const val ITEM_UNCHANGED = 0
@@ -19,7 +36,7 @@ class EditAlcoholDialog(private val callback : EditAlcoholDialogCallback, privat
     }
 
     interface EditAlcoholDialogCallback {
-        fun onAlcoholEditedCallback(alcohol : Alcohol?, result : Int)
+        fun onAlcoholEditedCallback(old : Alcohol, new : Alcohol?, result : Int, position : Int?)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +51,23 @@ class EditAlcoholDialog(private val callback : EditAlcoholDialogCallback, privat
         editalc_ptxt_capacity.setText(alcohol.capacity.toString())
         editalc_ptxt_content.setText(alcohol.content.toString())
         editalc_ptxt_price.setText(alcohol.price.toString())
+
+        OpenDatabase(context).also {
+            it.setOpenDatabaseListener(this)
+            it.load()
+        }
     }
 
     private fun onDeleteClick() {
-        callback.onAlcoholEditedCallback(null, ITEM_DELETED)
-        dismiss()
+        if (db == null) {
+            DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+        } else {
+            Thread{
+                db!!.alcoholDAO().delete(alcohol)
+            }.start()
+            callback.onAlcoholEditedCallback(alcohol, null, ITEM_DELETED, position)
+            dismiss()
+        }
     }
 
     private fun onAddClick() {
@@ -86,14 +115,19 @@ class EditAlcoholDialog(private val callback : EditAlcoholDialogCallback, privat
         )
 
         if (newAlcohol == alcohol) {
-            callback.onAlcoholEditedCallback(alcohol, ITEM_UNCHANGED)
+            callback.onAlcoholEditedCallback(alcohol, alcohol, ITEM_UNCHANGED, position)
+            dismiss()
         } else {
-            Thread {
-                db.alcoholDAO().update(name = newAlcohol.name, capacity = newAlcohol.capacity, content = newAlcohol.content, price = newAlcohol.price, id = newAlcohol.id)
-            }.start()
-            callback.onAlcoholEditedCallback(newAlcohol, ITEM_EDITED)
+            if (db == null) {
+                DatabaseNotFoundDialogFragment().show((activity as FragmentActivity).supportFragmentManager, "dialog")
+            } else {
+                Thread {
+                    db!!.alcoholDAO().update(name = newAlcohol.name, capacity = newAlcohol.capacity, content = newAlcohol.content, price = newAlcohol.price, id = newAlcohol.id)
+                }.start()
+                callback.onAlcoholEditedCallback(alcohol, newAlcohol, ITEM_EDITED, position)
+                dismiss()
+            }
         }
 
-        dismiss()
     }
 }

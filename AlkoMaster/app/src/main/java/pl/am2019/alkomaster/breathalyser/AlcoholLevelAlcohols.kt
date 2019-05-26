@@ -29,10 +29,10 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
     }
 
     private var db: AppDatabase? = null
-    private var alcoholList: List<Alcohol>? = null
+    private var alcoholList: MutableList<Alcohol>? = null
     private var myAdapter: RecyclerViewAdapter? = null
     private var breathalyser: Breathalyser = Breathalyser(0,"","")
-    private var suggestions: Array<String> = Array(2000) {""}
+    private var suggestions: Array<String> = Array(3000) {""}
 
     //dane z poprzedniej aktywnosci
     private var weight : Int = 0 //waga
@@ -168,6 +168,29 @@ class AlcoholLevelAlcohols : AppCompatActivity(), OpenDatabase.OpenDatabaseListe
         val size = alcoholList!!.size
         for (i in 0 until size) {
             suggestions[i] = "${alcoholList!![i].name}  ${alcoholList!![i].capacity} ml"
+        }
+    }
+
+    fun changeSuggestion(old : String, new : String) {
+        val idx = suggestions.indexOf(old)
+        if (idx != -1) {
+            suggestions[idx] = new
+        } else {
+            Log.e("alkomaster/ERROR", "${this::class.java}: Couldn't change suggestion from: $old to: $new")
+        }
+    }
+
+    fun getSuggestion(alcohol : Alcohol): String = "${alcohol.name}  ${alcohol.capacity} ml"
+
+    fun changeList(old : Alcohol, new : Alcohol?) {
+        if (alcoholList == null) {
+            DatabaseNotFoundDialogFragment().show(supportFragmentManager, "dialog")
+        } else {
+            if (new == null) {
+                alcoholList!!.remove(old)
+            } else {
+                alcoholList!![alcoholList!!.indexOf(old)] = new
+            }
         }
     }
 }
